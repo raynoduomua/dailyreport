@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+
+	<!-- ログインメッセージ -->
+	<div th:fragment="login">
+		<div class="alert alert-danger" th:if="${param.error}">
+			<small th:text="#{login.error.ms}"></small>
+		</div>
+		<div class="alert alert-success" th:if="${param.register}">
+			<small th:text="#{login.register.ms}"></small>
+		</div>
+		<div class="alert alert-success" th:if="${param.logout}">
+			<small th:text="#{login.logout.ms}"></small>
+		</div>
+		<div class="alert alert-danger" th:if="${param.delete}">
+			<small th:text="#{login.delete.ms}"></small>
+		</div>
+	</div>
+
+	<!-- home画面メッセージ -->
+	<div th:fragment="todo">
+		<div class="alert alert-success ms" th:if="${param.save}">
+			<small th:text="#{todo.save.ms}"></small>
+		</div>
+		<div class="alert alert-success ms" th:if="${param.done}">
+			<small th:text="#{todo.done.ms}"></small>
+		</div>
+		<div class="alert alert-success ms" th:if="${param.update}">
+			<small th:text="#{todo.update.ms}"></small>
+		</div>
+		<div class="alert alert-warning ms" th:if="${param.delete}">
+			<small th:text="#{todo.delete.ms}"></small>
+		</div>
+		<div class="alert alert-success ms" th:if="${param.adminsave}">
+			<small th:text="#{todo.adminsave.ms}"></small>
+		</div>
+	</div>
+
+	<!-- 講座名登録 -->
+	<div th:fragment="course">
+		<div class="alert alert-success ms" th:if="${param.save}">
+			<small th:text="#{course.save.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="course">
+		<div class="alert alert-success ms" th:if="${param.update}">
+			<small th:text="#{course.update.ms}"></small>
+		</div>
+	</div>
+
+	<!-- クライアント名登録 -->
+	<div th:fragment="client">
+		<div class="alert alert-success ms" th:if="${param.save}">
+			<small th:text="#{client.save.ms}"></small>
+		</div>
+	</div>
+
+	<!-- ログイン情報更新メッセージ -->
+	<div th:fragment="info">
+		<div class="alert alert-success ms mt-2 mb-4" th:if="${param.update}">
+			<small th:text="#{info.update.ms}"></small>
+		</div>
+	</div>
+
+	<!-- エラーメッセージ(404 Not Foundなど) -->
+	<div th:fragment="error">
+		<div class="text-center">
+			<div class="display-1" th:text="${status}"></div>
+			<div class="text-muted mb-4" th:text="${error}"></div>
+
+			<div class="text-muted">ページを表示できません</div>
+			<a th:href="@{/todo/home}">&larr; ホームに戻る</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+.tbl-list th {
+    text-align: center;
+}
+
+.list-id {
+    width: 70px;
+}
+
+.list-course {
+    width: 200px;
+}
+
+.list-date {
+    width: 120px;
+}
+
+.list-a{
+	display: block;
+	margin:auto;
+}

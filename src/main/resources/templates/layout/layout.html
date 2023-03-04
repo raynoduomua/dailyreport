@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+
+	<title th:text="#{dailyreport.title}"></title>
+</head>
+
+<body>
+
+	<!-- サイドバーの配置 -->
+	<div layout:fragment="sidebar">
+	</div>
+
+	<!-- コンテンツの配置 -->
+	<div layout:fragment="content">
+	</div>
+
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+<script th:src="@{/js/usertables.js}"></script>
+
+</html>

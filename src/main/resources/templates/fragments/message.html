@@ -42,7 +42,7 @@
 		</div>
 	</div>
 
-	<!-- 講座名登録 -->
+	<!-- 講座名登録・更新 -->
 	<div th:fragment="course">
 		<div class="alert alert-success ms" th:if="${param.save}">
 			<small th:text="#{course.save.ms}"></small>
@@ -54,10 +54,15 @@
 		</div>
 	</div>
 
-	<!-- クライアント名登録 -->
+	<!-- クライアント名登録・更新 -->
 	<div th:fragment="client">
 		<div class="alert alert-success ms" th:if="${param.save}">
 			<small th:text="#{client.save.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="client">
+		<div class="alert alert-success ms" th:if="${param.update}">
+			<small th:text="#{client.update.ms}"></small>
 		</div>
 	</div>
 

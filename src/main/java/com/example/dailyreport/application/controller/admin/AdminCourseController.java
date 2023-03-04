@@ -77,7 +77,7 @@ public class AdminCourseController {
 	 * @param courseForm Formクラス
 	 * @return           講座名編集画面
 	 */
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit-course/{id}")
 	public String viewupdateCourse(@PathVariable Integer id, @ModelAttribute("courseForm") CourseForm courseForm) {
 
 		Optional<Course> courseOptional = this.adminCourseService.viewupdateCourse(id);

@@ -22,18 +22,26 @@
 
             <div class="row">
                 <div class="col">
-
                     <div class="card shadow">
+                    
                         <div class="card-header">
                             <h3 class="text-center text-navy my-3" th:text="#{client.list}"></h3>
                         </div>
+                        
                         <div class="card-body table-responsive">
+                        
+                        	<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: client}">
+							</div>
+							
                             <table id="user-table" class="table table-bordered tbl-list">
                                 <thead>
                                     <tr>
                                         <th class="list-id" th:text="#{ID}"></th>
                                         <th th:text="#{clientname}"></th>
                                         <th class="list-date" th:text="#{registration.date}"></th>
+										<th class="list-date" th:text="#{update.date}"></th>
+										<th class="list-date"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,12 +49,16 @@
                                         <td th:text="${client.id}"></td>
                                         <td th:text="${client.clientName}"></td>
                                         <td th:text="${client.createdAt}"></td>
+                                        <td th:text="${client.updatedAt}"></td>
+                                        <td>
+											<a th:href="@{/admin/edit-client/{id}(id =*{client.id})}" class="btn btn-navy list-a">
+												<i class="bi bi-pencil-square"></i> 編集</a>
+										</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -16,15 +16,18 @@ import lombok.Data;
 @Table(name = "clientsname")
 public class Client {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Integer id;
 
-    @Column(name = "CLIENT_NAME")
-    private String clientName;
+	@Column(name = "CLIENT_NAME")
+	private String clientName;
 
-    @Column(name = "CREATED_AT")
-    private LocalDate createdAt;
+	@Column(name = "CREATED_AT")
+	private LocalDate createdAt;
+
+	@Column(name = "UPDATED_AT")
+	private LocalDate updatedAt;
 
 }

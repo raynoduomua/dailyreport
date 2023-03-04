@@ -25,37 +25,35 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{updatecourse.title}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{updateclient.title}"></h3>
 						</div>
 
-						<!-- 講座更新 -->
+						<!-- クライアント名更新 -->
 						<div class="card-body form-group">
 
-							<h6 class="card-title my-3 text-center text-danger" th:text="#{createcourse.info-1}">
-							</h6>
-							<h6 class="card-title my-3 text-center text-danger" th:text="#{createcourse.info-2}">
-							</h6>
-							<h6 class="card-title my-3 text-center text-danger" th:text="#{createcourse.info-3}">
-							</h6>
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: client}">
+							</div>
 
-							<form th:action="@{/admin/update-course}" method="post" th:object="${courseForm}"
+							<form th:action="@{/admin/update-client}" method="post" th:object="${clientForm}"
 								autocomplete="off">
 								<input type="hidden" name="id" th:field="*{id}" />
 
-								<!-- coursename -->
-								<div class="my-3">
-									<label for="coursename" class="form-label my-3" th:text="#{coursename}"></label>
-									<input class="form-control" type="text" placeholder="講座名-会場名(Javaプログラミング講座-東京会場)"
-										th:errorclass="is-invalid" th:field="*{coursename}">
-									<div class="invalid-feedback" th:errors="*{coursename}">
+								<!-- clientname -->
+								<div class="mb-3">
+									<label for="clientname" class="form-label" th:text="#{clientname}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{clientname}">
+									<div class="invalid-feedback" th:errors="*{clientname}">
 									</div>
 								</div>
 
-								<button class="w-25 btn btn-navy form-btn" type="submit" th:text="#{update}"></button>
+								<button class="w-25 btn btn-navy form-btn" type="submit"
+									th:text="#{update}"></button>
 							</form>
 						</div>
 
-						<form th:action="@{/admin/list-course}" method="get">
+						<form th:action="@{/admin/list-client}" method="get">
 							<input type="submit" th:value="#{return}" class="btn btn-dark form-btn mb-3" />
 						</form>
 

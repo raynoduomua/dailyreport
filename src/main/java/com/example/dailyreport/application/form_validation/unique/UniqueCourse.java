@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.form_validation;
+package com.example.dailyreport.application.form_validation.unique;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

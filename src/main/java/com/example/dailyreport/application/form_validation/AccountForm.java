@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.example.dailyreport.application.form_validation.unique.UniqueLoginID;
+
 import lombok.Data;
 
 @Data
@@ -20,6 +22,7 @@ public class AccountForm {
 
 	@NotBlank(groups = ValidGroup1.class)
 	@Pattern(regexp = "^[a-zA-Z_]+$", groups = ValidGroup2.class, message = "半角英字小文字大文字、_(アンダーバー)のみで入力してください")
+	@UniqueLoginID(groups = ValidGroup3.class)
 	private String loginId;
 
 	@NotBlank(groups = ValidGroup1.class)

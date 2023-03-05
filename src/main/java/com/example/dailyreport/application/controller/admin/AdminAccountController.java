@@ -66,7 +66,6 @@ public class AdminAccountController {
 			return this.viewCreateAccount(model, accountForm);
 		}
 
-		log.info("accountForm: {}", accountForm);
 		this.adminAccountService.saveAccount(accountForm);
 
 		return "redirect:/admin/create-account?save";

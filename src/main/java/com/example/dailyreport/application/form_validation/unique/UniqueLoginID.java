@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.form_validation;
+package com.example.dailyreport.application.form_validation.unique;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,10 +10,10 @@ import javax.validation.Payload;
 
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueClientValidator.class)
-public @interface UniqueClient {
+@Constraint(validatedBy = UniqueLoginIDValidator.class)
+public @interface UniqueLoginID {
 
-	String message() default "このクライアント名は既に登録されています";
+	String message() default "このログインIDは既に登録されています";
 
 	Class<?>[] groups() default {};
 

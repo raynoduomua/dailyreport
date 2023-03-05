@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.form_validation;
+package com.example.dailyreport.application.form_validation.unique;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

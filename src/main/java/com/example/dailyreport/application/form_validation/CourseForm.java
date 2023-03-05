@@ -2,6 +2,8 @@ package com.example.dailyreport.application.form_validation;
 
 import javax.validation.constraints.NotBlank;
 
+import com.example.dailyreport.application.form_validation.unique.UniqueCourse;
+
 import lombok.Data;
 
 @Data

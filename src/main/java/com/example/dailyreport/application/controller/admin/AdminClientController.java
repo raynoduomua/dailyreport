@@ -49,7 +49,8 @@ public class AdminClientController {
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return viewCreateClient(clientForm);
+
+			return this.viewCreateClient(clientForm);
 		}
 
 		this.adminClientService.saveCourse(clientForm);
@@ -90,12 +91,19 @@ public class AdminClientController {
 		return "admin/client/updateclient";
 	}
 
+	/**
+	 * クライアント名更新処理
+	 * @param clientForm    formクラス
+	 * @param bindingResult バリデーションチェック
+	 * @return              クライアント名一覧画面
+	 */
 	@PostMapping("/update-client")
 	public String updateClient(@Validated(GroupOrder.class) @ModelAttribute("clientForm") ClientForm clientForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return viewupdateClient(clientForm.getId(), clientForm);
+
+			return this.viewupdateClient(clientForm.getId(), clientForm);
 		}
 
 		this.adminClientService.updateClient(clientForm);

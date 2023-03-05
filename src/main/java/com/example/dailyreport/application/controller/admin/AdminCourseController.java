@@ -49,7 +49,8 @@ public class AdminCourseController {
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return viewCreateCourse(courseForm);
+
+			return this.viewCreateCourse(courseForm);
 		}
 
 		this.adminCourseService.saveCourse(courseForm);
@@ -100,7 +101,8 @@ public class AdminCourseController {
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return viewupdateCourse(courseForm.getId(), courseForm);
+
+			return this.viewupdateCourse(courseForm.getId(), courseForm);
 		}
 
 		this.adminCourseService.updateCourse(courseForm);

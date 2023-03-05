@@ -59,6 +59,14 @@
 								クライアント名一覧
 							</a>
 						</li>
+						<!-- アカウント登録(ADMIN) -->
+						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<li class="nav-item">
+							<a th:href="@{/admin/create-account}" class="nav-link text-white">
+								<i class="bi bi-people-fill me-2"></i>
+								アカウント作成
+							</a>
+						</li>
 						<!-- 退会（ADMIN, USER） -->
 						<li class="nav-item">
 							<a th:href="@{/deleteInfo}" class="nav-link text-white">

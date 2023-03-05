@@ -1,5 +1,7 @@
 package com.example.dailyreport.infrastructure.entity.admin.account;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,5 +41,11 @@ public class Account {
 
 	@Column(name = "ROLE")
 	private Integer role;
+
+	@Column(name = "CREATED_AT")
+	private LocalDate createdAt;
+
+	@Column(name = "UPDATED_AT")
+	private LocalDate updatedAt;
 
 }

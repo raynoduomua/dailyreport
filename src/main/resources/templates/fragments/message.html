@@ -65,6 +65,13 @@
 			<small th:text="#{client.update.ms}"></small>
 		</div>
 	</div>
+	
+	<!-- クライアント名登録・更新 -->
+	<div th:fragment="account">
+		<div class="alert alert-success ms" th:if="${param.save}">
+			<small th:text="#{account.save.ms}"></small>
+		</div>
+	</div>
 
 	<!-- ログイン情報更新メッセージ -->
 	<div th:fragment="info">

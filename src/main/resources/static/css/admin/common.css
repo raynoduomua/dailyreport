@@ -1,4 +1,4 @@
-.form-group {
+.form-card-body {
     width: 100%;
     max-width: 420px;
     padding: 15px;
@@ -15,4 +15,8 @@
 .form-btn {
     display: block;
     margin: auto;
+}
+
+.form-select{
+	width: 390px;
 }

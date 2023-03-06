@@ -1,0 +1,37 @@
+.form-card-body-report{
+	width: 100%;
+    max-width: 1100px;
+    display: block;
+    margin: auto;
+}
+
+.radio-button {
+	display: none; 					/* ラジオボタンを非表示にする */
+}
+
+.radio-button-label{
+	display:block;					/* ブロックレベル要素化 */
+	float:left;						/* 要素の左寄せ、回り込みを指定*/
+	margin:5px;						/* ラベル外側の余白 */
+	width:180px;					/* ラベルの横幅 */
+	height:45px;					/* ラベルの高さ */
+	text-align:center;				/* テキストのセンタリング指定 */
+	align-items: center;
+	line-height:45px;				/* 行の高さ */
+	padding-left:5px;				/* ラベル内左側の余白 */
+	padding-right:5px;				/* ラベル内右側の余白 */
+	color:#000000;				/* フォントの色(黒) */
+	border:2px solid #000000;		/* ラベルの境界線(黒)を実戦で指定 */
+	border-radius:5px;				/* 角丸 */
+}
+
+input[type="radio"]:hover + label {
+	background-color: #FFFFE0; 	/* マウスオーバー時の背景色(lightyellow) */
+	font-weight:bold;				/* 太字 */
+}
+
+input[type="radio"]:checked + label {
+  background-color:#28a745;		/* 背景色(success) */
+  color:#FFFFFF;					/* フォントの色(white) */
+  font-weight:bold;					/* 太字 */
+}

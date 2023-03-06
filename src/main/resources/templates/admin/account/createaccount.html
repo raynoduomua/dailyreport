@@ -27,11 +27,11 @@
 						<div class="card-header">
 							<h2 class="text-center text-navy my-2" th:text="#{create.account.title}"></h2>
 						</div>
-						
+
 						<div class="card-body form-card-body">
 
 							<h6 class="card-title my-2 text-center text-danger" th:text="#{create.account.info}"></h6>
-							
+
 							<!-- メッセージ -->
 							<div th:replace="~{fragments/message :: account}">
 							</div>
@@ -94,11 +94,12 @@
 									<select id="clientNameId" name="clientNameId" class="form-select">
 										<option></option>
 										<option th:each="client : ${clients}" th:value="${client.id}"
-											th:text="${client.clientName}"
-											th:selected="${client.id} == *{clientNameId}" th:field="*{clientNameId}" th:errorclass="is-invalid">
+											th:text="${client.clientName}" th:selected="${client.id} == *{clientNameId}"
+											th:field="*{clientNameId}" th:errorclass="is-invalid">
 										</option>
 									</select>
-									<div class="text-danger" th:if="${#fields.hasErrors('clientNameId')}" th:errors="*{clientNameId}">
+									<div class="text-danger" th:if="${#fields.hasErrors('clientNameId')}"
+										th:errors="*{clientNameId}">
 									</div>
 								</div>
 
@@ -108,11 +109,12 @@
 									<select id="courseNameId" name="courseNameId" class="form-select">
 										<option></option>
 										<option th:each="course : ${courses}" th:value="${course.id}"
-											th:text="${course.courseName}"
-											th:selected="${course.id} == *{courseNameId}" th:field="*{courseNameId}" th:errorclass="is-invalid">
+											th:text="${course.courseName}" th:selected="${course.id} == *{courseNameId}"
+											th:field="*{courseNameId}" th:errorclass="is-invalid">
 										</option>
 									</select>
-									<div class="text-danger" th:if="${#fields.hasErrors('courseNameId')}" th:errors="*{courseNameId}">
+									<div class="text-danger" th:if="${#fields.hasErrors('courseNameId')}"
+										th:errors="*{courseNameId}">
 									</div>
 								</div>
 
@@ -128,14 +130,8 @@
 									</div>
 								</div>
 
-								<button class="w-100 btn btn-navy my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
 							</form>
-
-							<div class="mb-2">
-								<form th:action="@{/loginForm}" method="get">
-									<input type="submit" th:value="#{return}" class="btn btn-info w-auto form-btn" />
-								</form>
-							</div>
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="UTF-8" th:remove="tag">
+	<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+</head>
+
+<body>
+
+	<!-- サイドバーの表示 -->
+	<div layout:fragment="sidebar" th:replace="~{fragments/sidebar :: sidebar}">
+	</div>
+
+	<!-- コンテンツの表示 -->
+	<main layout:fragment="content" class="offcanvas-outside bg-light">
+		<div class="container-fluid">
+			<!-- トグルボタン -->
+			<div th:replace="~{fragments/sidebar :: toggler}">
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="card shadow">
+
+						<div class="card-header">
+							<h2 class="text-center text-navy my-2" th:text="#{create.account.title}"></h2>
+						</div>
+
+						<div class="card-body form-card-body">
+
+							<h6 class="card-title my-2 text-center text-danger" th:text="#{create.account.info}"></h6>
+
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: account}">
+							</div>
+
+							<form th:action="@{/admin/update-account}" method="post" th:object="${accountForm}"
+								autocomplete="off">
+								<input type="hidden" name="id" th:field="*{id}" />
+
+								<!-- name -->
+								<div class="mb-2　form-group">
+									<label for="name" class="form-label" th:text="#{name}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{name}">
+									<div class="invalid-feedback" th:errors="*{name}">
+									</div>
+								</div>
+
+								<!-- nameKana -->
+								<div class="mb-2　form-group">
+									<label for="nameKana" class="form-label" th:text="#{nameKana}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{nameKana}">
+									<div class="invalid-feedback" th:errors="*{nameKana}">
+									</div>
+								</div>
+
+								<!-- loginId -->
+								<div class="mb-2　form-group">
+									<label for="loginId" class="form-label" th:text="#{loginId}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{loginId}" placeholder="例：姓_名(Yamada_Taro)">
+									<div class="invalid-feedback" th:errors="*{loginId}">
+									</div>
+								</div>
+
+								<!-- password -->
+								<div class="mb-2　form-group">
+									<label for="password" class="form-label" th:text="#{password}"></label>
+									<input class="form-control" type="password" th:errorclass="is-invalid"
+										th:field="*{password}">
+									<div class="invalid-feedback" th:errors="*{password}">
+									</div>
+								</div>
+
+								<!-- passwordconfirm -->
+								<div class="mb-2　form-group">
+									<label for="passwordconfirm" class="form-label"
+										th:text="#{passwordconfirm}"></label>
+									<input class="form-control" type="password" th:errorclass="is-invalid"
+										th:field="*{passwordconfirm}">
+									<div class="invalid-feedback" th:errors="*{passwordconfirm}">
+									</div>
+									<!-- 相関チェック password　passwordconfirm -->
+									<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}"
+										style="color:red;"></p>
+								</div>
+
+								<!-- client -->
+								<div class="mb-2　form-group">
+									<p class="form-label" th:text="#{clientname}"></p>
+									<select id="clientNameId" name="clientNameId" class="form-select">
+										<option></option>
+										<option th:each="client : ${clients}" th:value="${client.id}"
+											th:text="${client.clientName}" th:selected="${client.id} == *{clientNameId}"
+											th:field="*{clientNameId}" th:errorclass="is-invalid">
+										</option>
+									</select>
+									<div class="text-danger" th:if="${#fields.hasErrors('clientNameId')}"
+										th:errors="*{clientNameId}">
+									</div>
+								</div>
+
+								<!-- course -->
+								<div class="mb-2　form-group">
+									<p class="form-label" th:text="#{coursename}"></p>
+									<select id="courseNameId" name="courseNameId" class="form-select">
+										<option></option>
+										<option th:each="course : ${courses}" th:value="${course.id}"
+											th:text="${course.courseName}" th:selected="${course.id} == *{courseNameId}"
+											th:field="*{courseNameId}" th:errorclass="is-invalid">
+										</option>
+									</select>
+									<div class="text-danger" th:if="${#fields.hasErrors('courseNameId')}"
+										th:errors="*{courseNameId}">
+									</div>
+								</div>
+
+								<!-- role -->
+								<div class="mb-2　form-group">
+									<p class="form-label" th:text="#{role}"></p>
+									<div th:each="item : ${AuthorityMap}" class="form-check-inline">
+										<input type="radio" class="form-check-input" th:value="${item.value}"
+											th:field="*{role}" th:errorclass="is-invalid" />
+										<label class="form-check-label" th:text="${item.key}"></label>
+									</div>
+									<div class="text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">
+									</div>
+								</div>
+
+								<button class="w-100 btn btn-navy my-3" type="submit" th:text="#{insert}"></button>
+							</form>
+
+							<div class="mb-2">
+								<form th:action="@{/admin/list-account}" method="get">
+									<input type="submit" th:value="#{return}" class="btn btn-dark w-auto form-btn" />
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

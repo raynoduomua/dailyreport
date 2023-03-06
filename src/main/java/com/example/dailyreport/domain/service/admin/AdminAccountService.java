@@ -1,10 +1,15 @@
 package com.example.dailyreport.domain.service.admin;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.AccountForm;
+import com.example.dailyreport.infrastructure.dto.AccountAndCourseAndClient;
 import com.example.dailyreport.infrastructure.entity.admin.account.Account;
+import com.example.dailyreport.infrastructure.mapper.AccountAndCourseAndClientMapper;
 import com.example.dailyreport.infrastructure.repository.admin.AdminAccountRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminAccountService {
 
 	private final AdminAccountRepository adminAccountRepository;
+	private final AccountAndCourseAndClientMapper accountAndCourseAndClientMapper;
 
 	/**
 	 * アカウント登録処理
@@ -33,6 +39,47 @@ public class AdminAccountService {
 		account.setUpdatedAt(null);
 
 		this.adminAccountRepository.save(account);
+
+	}
+
+	/**
+	 * アカウント一覧取得
+	 * @return アカウント一覧
+	 */
+	public List<AccountAndCourseAndClient> viewAccountList() {
+
+		return accountAndCourseAndClientMapper.findAllAccount(null);
+	}
+
+	/**
+	 * アカウント1件取得
+	 * @param id テーブル「accounts」 カラム「ID」
+	 * @return   アカウント1件
+	 */
+	public Optional<Account> viewupdateAccount(Integer id) {
+
+		return this.adminAccountRepository.findById(id);
+	}
+
+	/**
+	 * アカウント更新処理
+	 * @param accountForm Formクラス
+	 */
+	public void updateAccount(AccountForm accountForm) {
+
+		Optional<Account> accountOptional = this.viewupdateAccount(accountForm.getId());
+		accountOptional.ifPresent(account -> {
+			account.setName(accountForm.getName());
+			account.setNameKana(accountForm.getNameKana());
+			account.setLoginId(accountForm.getLoginId());
+			account.setPassword(accountForm.getPassword());
+			account.setClientNameId(accountForm.getClientNameId());
+			account.setCourseNameId(accountForm.getCourseNameId());
+			account.setRole(accountForm.getRole());
+			account.setUpdatedAt(LocalDateNow.getLocalDateNow());
+
+			this.adminAccountRepository.save(account);
+		});
 	}
 
 }

@@ -72,6 +72,11 @@
 			<small th:text="#{account.save.ms}"></small>
 		</div>
 	</div>
+	<div th:fragment="account">
+		<div class="alert alert-success ms" th:if="${param.update}">
+			<small th:text="#{account.update.ms}"></small>
+		</div>
+	</div>
 
 	<!-- ログイン情報更新メッセージ -->
 	<div th:fragment="info">

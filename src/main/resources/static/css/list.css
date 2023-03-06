@@ -10,7 +10,15 @@
     width: 70px;
 }
 
+.list-role{
+	width: 90px;
+}
+
 .list-course {
+    width: 200px;
+}
+
+.list-client {
     width: 200px;
 }
 

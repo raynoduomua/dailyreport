@@ -13,6 +13,8 @@ import lombok.Data;
 @Data
 public class AccountForm {
 
+	private Integer id;
+
 	@NotBlank(groups = ValidGroup1.class)
 	private String name;
 
@@ -31,7 +33,7 @@ public class AccountForm {
 	private String password;
 
 	@NotBlank(groups = ValidGroup1.class)
-	@Size(min = 8, max = 100, groups = ValidGroup2.class, message = "パスワードは8～100文字以内で入力してください")
+	@Size(min = 8, max = 100, groups = ValidGroup2.class, message = "パスワード再確認用は8～100文字以内で入力してください")
 	@Pattern(regexp = "^[a-zA-Z0-9]+$", groups = ValidGroup2.class)
 	private String passwordconfirm;
 

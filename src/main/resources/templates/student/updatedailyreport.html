@@ -26,16 +26,12 @@
 					<div class="card shadow">
 
 						<div class="card-header">
-							<h2 class="text-center text-navy my-2" th:text="#{create.student.title}"></h2>
+							<h2 class="text-center text-navy my-2" th:text="#{update.student.title}"></h2>
 						</div>
 
 						<div class="card-body form-card-body-report">
-						
-							<!-- メッセージ -->
-							<div th:replace="~{fragments/message :: student}">
-							</div>
 
-							<form th:action="@{/student/save-report}" method="post"
+							<form th:action="@{/student/update-report}" method="post"
 								th:object="${studentCreateReportForm}" autocomplete="off">
 
 								<!-- learningContents -->
@@ -97,7 +93,7 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{update}"></button>
 							</form>
 						</div>
 					</div>

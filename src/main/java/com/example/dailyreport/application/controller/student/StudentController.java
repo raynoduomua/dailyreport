@@ -19,6 +19,12 @@ public class StudentController {
 
 	private final StudentService studentService;
 
+	/**
+	 * 受講生Home画面表示
+	 * @param model     Modelクラス
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          受講生Home画面
+	 */
 	@GetMapping("/home")
 	public String viewHome(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 
@@ -33,4 +39,5 @@ public class StudentController {
 
 		return "student/home";
 	}
+
 }

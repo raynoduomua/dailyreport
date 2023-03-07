@@ -20,6 +20,11 @@ public class StudentService {
 	private final StudentReportRepository studentReportRepository;
 	private final AccountAndCourseAndClientMapper accountAndCourseAndClientMapper;
 
+	/**
+	 * 今週の受講生日報情報取得
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          今週の受講生日報
+	 */
 	public List<StudentReport> viewHome(LoginUser loginUser) {
 
 		return studentReportRepository.findByUserIdAndStudentsDateBetween(loginUser.getUser().getId(),
@@ -27,8 +32,9 @@ public class StudentService {
 	}
 
 	/**
-	 * アカウント一覧取得
-	 * @return アカウント一覧
+	 * ログイン中のユーザ情報取得
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          ログイン中のユーザ情報
 	 */
 	public List<AccountAndCourseAndClient> viewAccountOneList(LoginUser loginUser) {
 

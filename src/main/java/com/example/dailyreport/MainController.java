@@ -11,6 +11,10 @@ import com.example.dailyreport.application.common.security.LoginUser;
 @RequestMapping("/dailyreport")
 public class MainController {
 
+	/**
+	 * ログイン画面表示
+	 * @return ログイン画面
+	 */
 	@GetMapping("/loginForm")
 	public String viewLogin() {
 

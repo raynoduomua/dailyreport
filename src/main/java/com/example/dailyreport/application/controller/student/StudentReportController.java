@@ -29,7 +29,7 @@ public class StudentReportController {
 	private final StudentReportService studentReportService;
 
 	/**
-	 * 日報作成画面表示
+	 * 受講生日報作成画面表示
 	 * @param model                   Modelクラス
 	 * @param studentCreateReportForm Formクラス
 	 * @return                        日報作成画面
@@ -64,9 +64,43 @@ public class StudentReportController {
 			return viewCreateStudentDailyReport(model, studentCreateReportForm);
 		}
 
-		this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
+		if (this.studentReportService.existsByStudentsDate(loginUser) == false) {
 
-		return "redirect:/student/home?save";
+			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
+
+			return "redirect:/student/home?save";
+		} else {
+
+			return "redirect:/student/create-report?error";
+		}
+
+	}
+
+	/**
+	 * 受講生日報編集画面
+	 * @param model                   Modelクラス
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @return
+	 */
+	@GetMapping("/edit-report")
+	public String viewUpdateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
+
+		if (this.studentReportService.existsByStudentsDate(loginUser) == false) {
+
+			return "redirect:/student/create-report?editerror";
+		}
+
+		studentCreateReportForm = this.studentReportService.viewUpdateStudentDailyReport(loginUser,
+				studentCreateReportForm);
+
+		// 理解度
+		model.addAttribute("underMap", UnderStand.selectUnderStandMap());
+		// 講師対応
+		model.addAttribute("teacherMap", TeacherSupport.selectTeacherSupportMap());
+
+		return "student/updatedailyreport";
 	}
 
 }

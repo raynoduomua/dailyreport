@@ -12,30 +12,8 @@
 		<div class="alert alert-danger" th:if="${param.error}">
 			<small th:text="#{login.error.ms}"></small>
 		</div>
-		<div class="alert alert-success" th:if="${param.register}">
-			<small th:text="#{login.register.ms}"></small>
-		</div>
 		<div class="alert alert-success" th:if="${param.logout}">
 			<small th:text="#{login.logout.ms}"></small>
-		</div>
-	</div>
-
-	<!-- home画面メッセージ -->
-	<div th:fragment="todo">
-		<div class="alert alert-success ms" th:if="${param.save}">
-			<small th:text="#{todo.save.ms}"></small>
-		</div>
-		<div class="alert alert-success ms" th:if="${param.done}">
-			<small th:text="#{todo.done.ms}"></small>
-		</div>
-		<div class="alert alert-success ms" th:if="${param.update}">
-			<small th:text="#{todo.update.ms}"></small>
-		</div>
-		<div class="alert alert-warning ms" th:if="${param.delete}">
-			<small th:text="#{todo.delete.ms}"></small>
-		</div>
-		<div class="alert alert-success ms" th:if="${param.adminsave}">
-			<small th:text="#{todo.adminsave.ms}"></small>
 		</div>
 	</div>
 
@@ -79,6 +57,13 @@
 	<div th:fragment="student">
 		<div class="alert alert-success ms" th:if="${param.save}">
 			<small th:text="#{student.report.save.ms}"></small>
+		</div>
+		<div class="alert alert-danger ms" th:if="${param.error}">
+			<small th:text="#{student.report.error.ms}"></small>
+		</div>
+		<div class="alert alert-danger ms" th:if="${param.editerror}">
+			<small th:text="#{student.report.editerror1.ms}"></small><br>
+			<small th:text="#{student.report.editerror2.ms}"></small>
 		</div>
 	</div>
 	

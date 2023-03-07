@@ -1,5 +1,7 @@
 package com.example.dailyreport.domain.service.student;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.dailyreport.application.common.security.LoginUser;
@@ -16,6 +18,11 @@ public class StudentReportService {
 
 	private final StudentReportRepository studentReportRepository;
 
+	/**
+	 * 受講生日報登録
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 */
 	public void saveStudentDailyReport(LoginUser loginUser, StudentCreateReportForm studentCreateReportForm) {
 
 		StudentReport report = new StudentReport();
@@ -30,6 +37,34 @@ public class StudentReportService {
 		report.setUpdatedAt(null);
 
 		this.studentReportRepository.save(report);
+	}
+
+	/**
+	 * 本日の受講生日報が存在するか
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          true or false
+	 */
+	public boolean existsByStudentsDate(LoginUser loginUser) {
+
+		return this.studentReportRepository.existsByUserIdAndStudentsDate(loginUser.getUser().getId(),
+				LocalDateNow.getLocalDateNow());
+	}
+
+	public StudentCreateReportForm viewUpdateStudentDailyReport(LoginUser loginUser,
+			StudentCreateReportForm studentCreateReportForm) {
+
+		Optional<StudentReport> studentOptional = this.studentReportRepository
+				.findByUserIdAndStudentsDate(loginUser.getUser().getId(), LocalDateNow.getLocalDateNow());
+		studentOptional.ifPresent(report -> {
+			studentCreateReportForm.setLearningContents(report.getLearningContents());
+			studentCreateReportForm.setUnderstanding(report.getUnderstanding());
+			studentCreateReportForm.setUnderstandingDetail(report.getUnderstandingDetail());
+			studentCreateReportForm.setTeacherSupport(report.getTeacherSupport());
+			studentCreateReportForm.setQuestion(report.getQuestion());
+
+		});
+
+		return studentCreateReportForm;
 	}
 
 }

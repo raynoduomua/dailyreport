@@ -2,6 +2,7 @@ package com.example.dailyreport.domain.service.student;
 
 import org.springframework.stereotype.Service;
 
+import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.StudentCreateReportForm;
 import com.example.dailyreport.infrastructure.entity.student.StudentReport;
@@ -15,10 +16,10 @@ public class StudentReportService {
 
 	private final StudentReportRepository studentReportRepository;
 
-	public void saveStudentDailyReport(StudentCreateReportForm studentCreateReportForm) {
+	public void saveStudentDailyReport(LoginUser loginUser, StudentCreateReportForm studentCreateReportForm) {
 
 		StudentReport report = new StudentReport();
-		report.setUserId(6);
+		report.setUserId(loginUser.getUser().getId());
 		report.setLearningContents(studentCreateReportForm.getLearningContents());
 		report.setUnderstanding(studentCreateReportForm.getUnderstanding());
 		report.setUnderstandingDetail(studentCreateReportForm.getUnderstandingDetail());

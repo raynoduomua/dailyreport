@@ -47,6 +47,11 @@
 			coursesname co
 		on
 			a.COURSE_NAME_ID = co.ID
+		<where>
+        	<if test="serch.id != null">
+        		a.ID = #{serch.id}
+        	</if>
+        </where>
 		;
 	</select>
 </mapper>

@@ -48,7 +48,9 @@ public class AdminAccountService {
 	 */
 	public List<AccountAndCourseAndClient> viewAccountList() {
 
-		return accountAndCourseAndClientMapper.findAllAccount(null);
+		AccountAndCourseAndClient account = new AccountAndCourseAndClient();
+
+		return accountAndCourseAndClientMapper.findAllAccount(account);
 	}
 
 	/**

@@ -38,7 +38,8 @@
 								<div class="mb-2　form-group">
 									<label for="learningContents" class="form-label"
 										th:text="#{learningContents}"></label>
-									<textarea th:field="*{learningContents}" rows="3" cols="137" th:errorclass="is-invalid"></textarea>
+									<textarea th:field="*{learningContents}" rows="3" cols="137" class="form-textarea"
+										th:errorclass="is-invalid"></textarea>
 									<div class="invalid-feedback" th:errors="*{learningContents}">
 									</div>
 								</div>
@@ -62,7 +63,8 @@
 								<div class="mb-2　form-group">
 									<label for="understandingDetail" class="form-label"
 										th:text="#{understandingDetail}"></label>
-									<textarea th:field="*{understandingDetail}" rows="3" cols="137" th:errorclass="is-invalid"></textarea>
+									<textarea th:field="*{understandingDetail}" rows="3" cols="137"
+										class="form-textarea" th:errorclass="is-invalid"></textarea>
 									<div class="invalid-feedback" th:errors="*{understandingDetail}">
 									</div>
 								</div>
@@ -85,7 +87,8 @@
 								<!-- question -->
 								<div class="mb-2　form-group">
 									<label for="question" class="form-label" th:text="#{question}"></label>
-									<textarea th:field="*{question}" rows="3" cols="137" th:errorclass="is-invalid"></textarea>
+									<textarea th:field="*{question}" rows="3" cols="137" class="form-textarea"
+										th:errorclass="is-invalid"></textarea>
 									<div class="invalid-feedback" th:errors="*{question}">
 									</div>
 								</div>

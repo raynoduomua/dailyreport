@@ -5,6 +5,10 @@
     margin: auto;
 }
 
+.form-textarea{
+	border-radius:5px;				/* 角丸 */
+}
+
 .radio-button {
 	display: none; 					/* ラジオボタンを非表示にする */
 }

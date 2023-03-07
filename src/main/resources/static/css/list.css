@@ -30,3 +30,34 @@
 	display: block;
 	margin:auto;
 }
+
+table, td, th{
+	border: 1px #DCDCDC solid;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.tbl-header{
+	margin-left: 400px;
+}
+
+.tbl-header th{
+	width: 200px;	
+}
+
+.tbl-header td{
+	width: 400px;
+	padding-left: 10px;	
+}
+
+.list-textarea{
+	width: 230px;
+}
+
+.list-und{
+	width: 125px;
+}
+
+.list-teach{
+	width: 160px;
+}

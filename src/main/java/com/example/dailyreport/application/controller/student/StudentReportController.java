@@ -1,5 +1,6 @@
 package com.example.dailyreport.application.controller.student;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.TeacherSupport;
 import com.example.dailyreport.application.common.utils.UnderStand;
 import com.example.dailyreport.application.form_validation.GroupOrder;
@@ -26,6 +28,12 @@ public class StudentReportController {
 
 	private final StudentReportService studentReportService;
 
+	/**
+	 * 日報作成画面表示
+	 * @param model                   Modelクラス
+	 * @param studentCreateReportForm Formクラス
+	 * @return                        日報作成画面
+	 */
 	@GetMapping("/create-report")
 	public String viewCreateStudentDailyReport(Model model,
 			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
@@ -38,8 +46,16 @@ public class StudentReportController {
 		return "student/createdailyreport";
 	}
 
+	/**
+	 * 受講生日報登録処理
+	 * @param model                   Modelクラス
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @param bindingResult           バリデーションチェック
+	 * @return                        受講生Home画面
+	 */
 	@PostMapping("/save-report")
-	public String saveStudentDailyReport(Model model,
+	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@Validated(GroupOrder.class) @ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
 			BindingResult bindingResult) {
 
@@ -48,10 +64,9 @@ public class StudentReportController {
 			return viewCreateStudentDailyReport(model, studentCreateReportForm);
 		}
 
-		log.info("studentCreateReportForm: {}", studentCreateReportForm);
-		this.studentReportService.saveStudentDailyReport(studentCreateReportForm);
+		this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
 
-		return "redirect:/student/create-report";
+		return "redirect:/student/home?save";
 	}
 
 }

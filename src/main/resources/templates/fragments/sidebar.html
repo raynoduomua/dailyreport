@@ -83,6 +83,14 @@
 								受講生日報作成
 							</a>
 						</li>
+						<!-- 受講生日報作成(STUDENT) -->
+						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<li class="nav-item">
+							<a th:href="@{/student/create-report}" class="nav-link text-white">
+								<i class="bi bi-people-fill me-2"></i>
+								受講生日報編集
+							</a>
+						</li>
 						<!-- 退会（ADMIN, USER） -->
 						<li class="nav-item">
 							<a th:href="@{/deleteInfo}" class="nav-link text-white">
@@ -92,7 +100,7 @@
 						</li>
 						<!-- ログアウト（ADMIN, USER） -->
 						<li class="nav-item">
-							<a th:href="@{/logout}" class="nav-link text-white">
+							<a th:href="@{/dailyreport/logout}" class="nav-link text-white">
 								<i class="bi bi-box-arrow-right me-2"></i>
 								ログアウト
 							</a>

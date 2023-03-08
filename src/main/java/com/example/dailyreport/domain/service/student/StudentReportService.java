@@ -50,12 +50,32 @@ public class StudentReportService {
 				LocalDateNow.getLocalDateNow());
 	}
 
-	public StudentCreateReportForm viewUpdateStudentDailyReport(LoginUser loginUser,
-			StudentCreateReportForm studentCreateReportForm) {
+	/**
+	 * 当日受講生日報取得
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          当日受講生日報
+	 */
+	public Optional<StudentReport> findByUserIdAndStudentsDate(LoginUser loginUser) {
 
 		Optional<StudentReport> studentOptional = this.studentReportRepository
 				.findByUserIdAndStudentsDate(loginUser.getUser().getId(), LocalDateNow.getLocalDateNow());
+
+		return studentOptional;
+	}
+
+	/**
+	 * 当日受講生日報取得し、Formにセット
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @return                        Formクラス
+	 */
+	public StudentCreateReportForm viewUpdateStudentDailyReport(LoginUser loginUser,
+			StudentCreateReportForm studentCreateReportForm) {
+
+		Optional<StudentReport> studentOptional = this.findByUserIdAndStudentsDate(loginUser);
 		studentOptional.ifPresent(report -> {
+			studentCreateReportForm.setId(report.getId());
+			studentCreateReportForm.setUserId(report.getUserId());
 			studentCreateReportForm.setLearningContents(report.getLearningContents());
 			studentCreateReportForm.setUnderstanding(report.getUnderstanding());
 			studentCreateReportForm.setUnderstandingDetail(report.getUnderstandingDetail());
@@ -65,6 +85,26 @@ public class StudentReportService {
 		});
 
 		return studentCreateReportForm;
+	}
+
+	/**
+	 * 受講生日報更新処理
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 */
+	public void updateStudentDailyReport(LoginUser loginUser, StudentCreateReportForm studentCreateReportForm) {
+
+		Optional<StudentReport> studentOptional = this.findByUserIdAndStudentsDate(loginUser);
+		studentOptional.ifPresent(report -> {
+			report.setLearningContents(studentCreateReportForm.getLearningContents());
+			report.setUnderstanding(studentCreateReportForm.getUnderstanding());
+			report.setUnderstandingDetail(studentCreateReportForm.getUnderstandingDetail());
+			report.setTeacherSupport(studentCreateReportForm.getTeacherSupport());
+			report.setQuestion(studentCreateReportForm.getQuestion());
+			report.setUpdatedAt(LocalDateNow.getLocalDateNow());
+
+			this.studentReportRepository.save(report);
+		});
 	}
 
 }

@@ -71,7 +71,7 @@ public class StudentReportController {
 			return "redirect:/student/home?save";
 		} else {
 
-			return "redirect:/student/create-report?error";
+			return "redirect:/student/create-report?saveerror";
 		}
 
 	}
@@ -103,4 +103,26 @@ public class StudentReportController {
 		return "student/updatedailyreport";
 	}
 
+	/**
+	 * 受講生日報更新処理
+	 * @param model                   Modelクラス
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @param bindingResult           バリデーションチェック
+	 * @return                        受講生Home画面
+	 */
+	@PostMapping("/update-report")
+	public String updateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@Validated(GroupOrder.class) @ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
+			BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+
+			return this.viewUpdateStudentDailyReport(model, loginUser, studentCreateReportForm);
+		}
+
+		this.studentReportService.updateStudentDailyReport(loginUser, studentCreateReportForm);
+
+		return "redirect:/student/home?update";
+	}
 }

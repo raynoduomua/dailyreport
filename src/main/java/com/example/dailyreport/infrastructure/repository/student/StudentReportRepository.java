@@ -30,7 +30,7 @@ public interface StudentReportRepository extends JpaRepository<StudentReport, In
 	boolean existsByUserIdAndStudentsDate(Integer userId, LocalDate studentsDate);
 
 	/**
-	 * 本日の受講生日報取得
+	 * 当日受講生日報取得
 	 * @param userId       受講生ID
 	 * @param studentsDate 本日日付
 	 * @return             本日の受講生日報

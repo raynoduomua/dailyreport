@@ -2,6 +2,7 @@ package com.example.dailyreport.application.common.utils;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class LocalDateNow {
 
@@ -36,6 +37,17 @@ public class LocalDateNow {
 		LocalDate Fri = getLocalDateNow().with(DayOfWeek.FRIDAY);
 
 		return Fri;
+	}
+
+	/**
+	 * 時フィールドを取得
+	 * @return 時フィールド
+	 */
+	public static Integer geLocalDateTimeHour() {
+
+		Integer nowHour = LocalDateTime.now().getHour();
+
+		return nowHour;
 	}
 
 }

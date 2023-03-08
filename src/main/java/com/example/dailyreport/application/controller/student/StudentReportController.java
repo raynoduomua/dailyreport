@@ -43,7 +43,7 @@ public class StudentReportController {
 		// 講師対応
 		model.addAttribute("teacherMap", TeacherSupport.selectTeacherSupportMap());
 
-		return "student/createdailyreport";
+		return "student/report/createdailyreport";
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class StudentReportController {
 		// 講師対応
 		model.addAttribute("teacherMap", TeacherSupport.selectTeacherSupportMap());
 
-		return "student/updatedailyreport";
+		return "student/report/updatedailyreport";
 	}
 
 	/**

@@ -12,4 +12,6 @@ public interface AdminAccountRepository extends JpaRepository<Account, Integer> 
 
 	Optional<Account> findByLoginId(String loginId);
 
+	Integer countByRole(Integer role);
+
 }

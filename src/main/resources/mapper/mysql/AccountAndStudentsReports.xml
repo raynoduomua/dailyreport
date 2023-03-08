@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 以下の記載があることで、MyBatis専用のタグが使用できる -->
+		<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapperタグでMapperインターフェースと紐づける -->
+<mapper
+	namespace="com.example.dailyreport.infrastructure.mapper.AccountAndStudentsReportsMapper">
+	<!-- resultMapタグでテーブルのカラムとEntityのフィールドを紐づける -->
+	<resultMap
+		type="com.example.dailyreport.infrastructure.dto.AccountAndStudentsReports"
+		id="reports">
+		<!-- idタグで主キーとフィールドを紐づける -->
+		<id column="ID" property="id" />
+		<!-- resultタグで主キー以外のカラムとフィールドを紐づける -->
+		<result column="NAME" property="name" />
+		<result column="COURSE_NAME_ID" property="courseNameId" />
+		<result column="LEARNING_CONTENTS" property="learningContents" />
+		<result column="UNDERSTANDING" property="understanding" />
+		<result column="UNDERSTANDING_DETAIL"
+			property="understandingDetail" />
+		<result column="TEACHER_SUPPORT" property="teacherSupport" />
+		<result column="QUESTION" property="question" />
+		<result column="STUDENTS_DATE" property="studentsDate" />
+	</resultMap>
+
+	<!-- データを取得する時はselectタグを使用する -->
+	<!-- id属性に紐づけるメソッド名を定義する -->
+	<!-- resultMap属性にはメソッドの返り値となるEntityを定義する（返り値がListでも要素となるEntityを指定する） -->
+	<select id="findStudentReports" resultMap="reports">
+		SELECT
+			sr.ID,
+			sr.STUDENTS_DATE,
+			a.NAME,
+			sr.LEARNING_CONTENTS,
+			sr.UNDERSTANDING,
+			sr.UNDERSTANDING_DETAIL,
+			sr.TEACHER_SUPPORT,
+			sr.QUESTION
+		FROM
+			accounts a
+		LEFT OUTER JOIN
+			studentsreports sr
+		on
+			a.ID = sr.USER_ID
+		where
+			a.COURSE_NAME_ID = #{courseNameId}
+		and
+			a.ROLE = 5
+		and
+			sr.STUDENTS_DATE = #{studentsDate}
+		;
+	</select>
+</mapper>

@@ -25,16 +25,12 @@
 					<div class="card shadow">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{student.home}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{teacher.home}"></h3>
 
 							<table th:each="account : ${loginAccount}" class="tbl-list tbl-header my-1">
 								<tr>
 									<th th:text="#{name}"></th>
 									<td th:text="${account.name}"></td>
-								</tr>
-								<tr>
-									<th th:text="#{clientname}"></th>
-									<td th:text="${account.clientName}"></td>
 								</tr>
 								<tr>
 									<th th:text="#{coursename}"></th>
@@ -46,9 +42,9 @@
 								</tr>
 							</table>
 
-							<!-- メッセージ -->
+							<!-- メッセージ 
 							<div th:replace="~{fragments/message :: student}">
-							</div>
+							</div>-->
 						</div>
 
 						<div class="card-body table-responsive">
@@ -57,18 +53,18 @@
 								<thead>
 									<tr>
 										<th class="list-date" th:text="#{student.date}"></th>
+										<th class="list-date" th:text="#{student.name}"></th>
 										<th class="list-textarea" th:text="#{learningContents}"></th>
 										<th class="list-und" th:text="#{understanding}"></th>
 										<th class="list-textarea" th:text="#{understandingDetail}"></th>
 										<th class="list-teach" th:text="#{teacherSupport}"></th>
 										<th class="list-textarea" th:text="#{question}"></th>
-										<th class="list-date" th:text="#{registration.date}"></th>
-										<th class="list-date" th:text="#{update.date}"></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="report : ${reports}">
+									<tr th:each="report : ${studentreports}">
 										<td th:text="${report.studentsDate}"></td>
+										<td th:text="${report.name}"></td>
 										<td th:text="${report.learningContents}"></td>
 										<th:block th:switch="${report.understanding}">
 											<td th:case=5 th:text="#{und5}"></td>
@@ -86,11 +82,10 @@
 											<td th:case=1 th:text="#{teach1}"></td>
 										</th:block>
 										<td th:text="${report.question}"></td>
-										<td th:text="${report.createdAt}"></td>
-										<td th:text="${report.updatedAt}"></td>
 									</tr>
 								</tbody>
 							</table>
+
 						</div>
 					</div>
 				</div>

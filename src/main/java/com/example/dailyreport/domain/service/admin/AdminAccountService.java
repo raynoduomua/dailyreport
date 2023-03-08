@@ -84,4 +84,14 @@ public class AdminAccountService {
 		});
 	}
 
+	/**
+	 * 該当の権限のレコード数
+	 * @param role 権限
+	 * @return     レコード数
+	 */
+	public Integer countByRole(Integer role) {
+
+		return this.adminAccountRepository.countByRole(role);
+	}
+
 }

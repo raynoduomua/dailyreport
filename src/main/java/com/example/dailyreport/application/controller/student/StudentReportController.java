@@ -18,12 +18,10 @@ import com.example.dailyreport.application.form_validation.StudentCreateReportFo
 import com.example.dailyreport.domain.service.student.StudentReportService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/student")
-@Slf4j
 public class StudentReportController {
 
 	private final StudentReportService studentReportService;
@@ -64,6 +62,7 @@ public class StudentReportController {
 			return viewCreateStudentDailyReport(model, studentCreateReportForm);
 		}
 
+		// 本日の受講生日報存在check
 		if (this.studentReportService.existsByStudentsDate(loginUser) == false) {
 
 			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
@@ -125,4 +124,5 @@ public class StudentReportController {
 
 		return "redirect:/student/home?update";
 	}
+
 }

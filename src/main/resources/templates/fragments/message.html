@@ -53,6 +53,18 @@
 		</div>
 	</div>
 	
+	<!-- 講師日報登録・更新 -->
+	<div th:fragment="teacher">
+		<div class="alert alert-success ms" th:if="${param.save}">
+			<small th:text="#{teacher.report.daily.save.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-danger ms" th:if="${param.saveerror}">
+			<small th:text="#{teacher.report.daily.saveerror.ms}"></small>
+		</div>
+	</div>
+	
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">
 		<div class="alert alert-success ms" th:if="${param.save}">
@@ -84,7 +96,7 @@
 			<div class="text-muted mb-4" th:text="${error}"></div>
 
 			<div class="text-muted">ページを表示できません</div>
-			<a th:href="@{/todo/home}">&larr; ホームに戻る</a>
+			<a th:href="@{/dailyreport/loginFork}">&larr; ホームに戻る</a>
 		</div>
 	</div>
 

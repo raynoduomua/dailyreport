@@ -12,12 +12,10 @@ import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.teacher.TeacherService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/teacher")
-@Slf4j
 public class TeacherController {
 
 	private final CommonService commonService;
@@ -32,7 +30,7 @@ public class TeacherController {
 		// 本日日付
 		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 
-		if (LocalDateNow.geLocalDateTimeHour() <= 14) {
+		if (LocalDateNow.geLocalDateTimeHour() <= 13) {
 
 			model.addAttribute("studentreports",
 					this.teacherService.findStudentReports(loginUser, LocalDateNow.getLocalDateNow().minusDays(1)));

@@ -1,5 +1,7 @@
 package com.example.dailyreport.domain.service.teacher;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.dailyreport.application.common.security.LoginUser;
@@ -42,6 +44,52 @@ public class TeacherDailyReportService {
 		report.setUpdatedAt(null);
 
 		this.teacherDailyReportRepository.save(report);
+	}
+
+	/**
+	 * 当日講師日報取得
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          当日講師日報
+	 */
+	public Optional<TeacherDailyReport> findByCourseIdAndClassDate(LoginUser loginUser) {
+
+		return this.teacherDailyReportRepository.findByCourseIdAndClassDate(loginUser.getUser().getCourseNameId(),
+				LocalDateNow.getLocalDateNow());
+	}
+
+	/**
+	 * 当日講師日報取得し、Formにセット
+	 * @param loginUser              ログイン中のユーザ情報
+	 * @param teacherDailyReportForm Formクラス
+	 * @return                       Formクラス
+	 */
+	public TeacherDailyReportForm viewUpdateTeacherDailyReport(LoginUser loginUser,
+			TeacherDailyReportForm teacherDailyReportForm) {
+
+		Optional<TeacherDailyReport> reportOptional = this.findByCourseIdAndClassDate(loginUser);
+		reportOptional.ifPresent(report -> {
+			teacherDailyReportForm.setId(report.getId());
+			teacherDailyReportForm.setDailyReports(report.getDailyReports());
+		});
+
+		return teacherDailyReportForm;
+	}
+
+	/**
+	 * 講師日報更新処理
+	 * @param loginUser              ログイン中のユーザ情報
+	 * @param teacherDailyReportForm Formクラス
+	 */
+	public void updateTeacherDailyReport(LoginUser loginUser,
+			TeacherDailyReportForm teacherDailyReportForm) {
+
+		Optional<TeacherDailyReport> reportOptional = this.findByCourseIdAndClassDate(loginUser);
+		reportOptional.ifPresent(report -> {
+			report.setDailyReports(teacherDailyReportForm.getDailyReports());
+			report.setUpdatedAt(LocalDateNow.getLocalDateNow());
+
+			this.teacherDailyReportRepository.save(report);
+		});
 	}
 
 }

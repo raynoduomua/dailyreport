@@ -12,6 +12,4 @@ public class TeacherDailyReportForm {
 	@NotBlank(groups = ValidGroup1.class)
 	private String dailyReports;
 
-	private Integer courseId;
-
 }

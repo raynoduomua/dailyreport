@@ -32,10 +32,8 @@ public class StudentController {
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
-
 		// 本日日付
 		model.addAttribute("today", LocalDateNow.getLocalDateNow());
-
 		// 今週の受講生日報
 		model.addAttribute("reports", studentService.viewHome(loginUser));
 

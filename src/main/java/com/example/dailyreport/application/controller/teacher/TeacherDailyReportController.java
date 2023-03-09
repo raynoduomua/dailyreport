@@ -18,24 +18,28 @@ import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.teacher.TeacherDailyReportService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/teacher")
-@Slf4j
 public class TeacherDailyReportController {
 
 	private final CommonService commonService;
 	private final TeacherDailyReportService teacherDailyReportService;
 
+	/**
+	 * 講師日報作成画面表示
+	 * @param model                  Modelクラス
+	 * @param loginUser              ログイン中のユーザ情報
+	 * @param teacherDailyReportForm Formクラス
+	 * @return                       講師日報作成画面
+	 */
 	@GetMapping("/create-daily-report")
 	public String viewCreateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm) {
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", this.commonService.viewAccountOneList(loginUser));
-
 		// 本日日付
 		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 
@@ -48,7 +52,8 @@ public class TeacherDailyReportController {
 	 * @param loginUser              ログイン中のユーザ情報
 	 * @param teacherDailyReportForm Formクラス
 	 * @param bindingResult          バリデーションチェック
-	 * @return                       講師日報登録作成画面
+	 * @return                       存在しない：講師日報登録作成画面
+	 *                               存在する　：講師日報登録作成画面
 	 */
 	@PostMapping("/save-daily-report")
 	public String saveTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
@@ -71,6 +76,58 @@ public class TeacherDailyReportController {
 			return "redirect:/teacher/create-daily-report?saveerror";
 		}
 
+	}
+
+	/**
+	 * 講師日報編集画面
+	 * @param model                  Modelクラス
+	 * @param loginUser              ログイン中のユーザ情報
+	 * @param teacherDailyReportForm Formクラス
+	 * @return                       存在しない：講師日報作成画面
+	 *                               存在する　：講師日報編集画面
+	 */
+	@GetMapping("/edit-daily-report")
+	public String viewUpdateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm) {
+
+		// 本日の講師日報存在check
+		if (this.teacherDailyReportService.existsByCourseIdAndClassDate(loginUser) == false) {
+
+			return "redirect:/teacher/create-daily-report?editerror";
+		}
+
+		// ログイン中のユーザ情報取得
+		model.addAttribute("loginAccount", this.commonService.viewAccountOneList(loginUser));
+		// 本日日付
+		model.addAttribute("today", LocalDateNow.getLocalDateNow());
+
+		teacherDailyReportForm = this.teacherDailyReportService.viewUpdateTeacherDailyReport(loginUser,
+				teacherDailyReportForm);
+
+		return "teacher/daily/updatedailyreport";
+	}
+
+	/**
+	 * 講師日報更新処理
+	 * @param model                  Modelクラス
+	 * @param loginUser              ログイン中のユーザ情報
+	 * @param teacherDailyReportForm Formクラス
+	 * @param bindingResult          バリデーションチェック
+	 * @return                       講師日報作成画面
+	 */
+	@PostMapping("/update-daily-report")
+	public String updateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@Validated(GroupOrder.class) @ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm,
+			BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+
+			return this.viewUpdateTeacherDailyReport(model, loginUser, teacherDailyReportForm);
+		}
+
+		this.teacherDailyReportService.updateTeacherDailyReport(loginUser, teacherDailyReportForm);
+
+		return "redirect:/teacher/create-daily-report?update";
 	}
 
 }

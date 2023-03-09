@@ -1,6 +1,7 @@
 package com.example.dailyreport.infrastructure.repository.teacher;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,7 @@ public interface TeacherDailyReportRepository extends JpaRepository<TeacherDaily
 	 * @return          true or false
 	 */
 	boolean existsByCourseIdAndClassDate(Integer courseId, LocalDate classDate);
+
+	Optional<TeacherDailyReport> findByCourseIdAndClassDate(Integer courseId, LocalDate classDate);
 
 }

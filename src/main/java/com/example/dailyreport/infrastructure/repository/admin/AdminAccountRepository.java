@@ -1,5 +1,6 @@
 package com.example.dailyreport.infrastructure.repository.admin;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,7 @@ public interface AdminAccountRepository extends JpaRepository<Account, Integer> 
 	Optional<Account> findByLoginId(String loginId);
 
 	Integer countByRole(Integer role);
+
+	List<Account> findByCourseNameIdAndRole(Integer courseNameId, Integer role);
 
 }

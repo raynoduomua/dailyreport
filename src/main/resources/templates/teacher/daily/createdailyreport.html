@@ -24,7 +24,7 @@
 
 			<div class="row">
 				<div class="col">
-					<div class="card shadow">
+					<div class="card shadow mt-3">
 
 						<div class="card-header">
 							<h3 class="text-center text-navy my-3" th:text="#{create.teacher.daily.report.title}"></h3>
@@ -44,13 +44,13 @@
 								</tr>
 							</table>
 
-						</div>
-
-						<div class="card-body form-card-body-report">
-
 							<!-- メッセージ -->
 							<div th:replace="~{fragments/message :: teacher}">
 							</div>
+
+						</div>
+
+						<div class="card-body form-card-body-report">
 
 							<form th:action="@{/teacher/save-daily-report}" method="post"
 								th:object="${teacherDailyReportForm}" autocomplete="off">

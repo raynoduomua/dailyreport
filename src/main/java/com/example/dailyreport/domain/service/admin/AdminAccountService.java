@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.AccountForm;
 import com.example.dailyreport.infrastructure.dto.AccountAndCourseAndClient;
@@ -82,6 +83,16 @@ public class AdminAccountService {
 
 			this.adminAccountRepository.save(account);
 		});
+	}
+
+	/**
+	 * 講座IDと同じ受講生の取得
+	 * @param loginUser ログイン中のユーザ情報
+	 * @return          講座IDと同じ受講生
+	 */
+	public List<Account> findByCourseNameIdAndRole(LoginUser loginUser) {
+
+		return this.adminAccountRepository.findByCourseNameIdAndRole(loginUser.getUser().getCourseNameId(), 5);
 	}
 
 	/**

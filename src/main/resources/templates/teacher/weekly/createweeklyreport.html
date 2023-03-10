@@ -27,7 +27,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{update.teacher.daily.report.title}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{create.teacher.weekly.report.title}"></h3>
 
 							<table th:each="account : ${loginAccount}" class="tbl-list tbl-header my-1">
 								<tr>
@@ -44,25 +44,43 @@
 								</tr>
 							</table>
 
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: teacher}">
+							</div>
+
 						</div>
 
 						<div class="card-body form-card-body-report">
 
-							<form th:action="@{/teacher/update-daily-report}" method="post"
-								th:object="${teacherDailyReportForm}" autocomplete="off">
-								<input type="hidden" name="id" th:field="*{id}" />
-
-								<!-- dailyReports -->
-								<div class="mb-2　form-group">
-									<label for="dailyReports" class="form-label"
-										th:text="#{dailyReports}"></label>
-									<textarea th:field="*{dailyReports}" rows="5" cols="137" class="form-textarea"
-										th:errorclass="is-invalid"></textarea>
-									<div class="invalid-feedback" th:errors="*{dailyReports}">
+							<form th:action="@{/teacher/save-weekly-report}" method="post"
+								th:object="${teacherWeeklyReportForm}" autocomplete="off">
+								
+								<!-- student -->
+								<div class="form-group">
+									<p class="form-label" th:text="#{student.name}"></p>
+									<select id="userId" name="userId" class="form-select form-select-student">
+										<option></option>
+										<option th:each="student : ${students}" th:value="${student.id}"
+											th:text="${student.name}" th:selected="${student.id} == *{userId}"
+											th:field="*{userId}" th:errorclass="is-invalid">
+										</option>
+									</select>
+									<div class="text-danger form-error" th:if="${#fields.hasErrors('userId')}"
+										th:errors="*{userId}">
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{update}"></button>
+								<!-- dailyReports -->
+								<div class="form-group mt-3">
+									<label for="weeklyReports" class="form-label"
+										th:text="#{weeklyReports}"></label>
+									<textarea th:field="*{weeklyReports}" rows="5" cols="137" class="form-textarea"
+										th:errorclass="is-invalid"></textarea>
+									<div class="invalid-feedback" th:errors="*{weeklyReports}">
+									</div>
+								</div>
+
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
 							</form>
 
 						</div>

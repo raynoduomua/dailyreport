@@ -26,14 +26,15 @@
 
 						<div class="card-header">
 							<h3 class="text-center text-navy my-3" th:text="#{updateclient.title}"></h3>
+							
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: client}">
+							</div>
+							
 						</div>
 
 						<!-- クライアント名更新 -->
 						<div class="card-body form-card-body">
-
-							<!-- メッセージ -->
-							<div th:replace="~{fragments/message :: client}">
-							</div>
 
 							<form th:action="@{/admin/update-client}" method="post" th:object="${clientForm}"
 								autocomplete="off">

@@ -8,3 +8,11 @@
 .form-textarea{
 	border-radius:5px;				/* 角丸 */
 }
+
+.form-select-student{
+	margin: auto;
+}
+
+.form-error{
+    text-align: center;
+}

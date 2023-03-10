@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.dailyreport.application.common.security.LoginUser;
+import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.common.utils.TeacherSupport;
 import com.example.dailyreport.application.common.utils.UnderStand;
 import com.example.dailyreport.application.form_validation.GroupOrder;
 import com.example.dailyreport.application.form_validation.StudentCreateReportForm;
+import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.student.StudentReportService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class StudentReportController {
 
 	private final StudentReportService studentReportService;
+	private final CommonService commonService;
 
 	/**
 	 * 受講生日報作成画面表示
@@ -33,9 +36,13 @@ public class StudentReportController {
 	 * @return                        受講生日報作成画面
 	 */
 	@GetMapping("/create-report")
-	public String viewCreateStudentDailyReport(Model model,
+	public String viewCreateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
 
+		// ログイン中のユーザ情報取得
+		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
+		// 本日日付
+		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 		// 理解度
 		model.addAttribute("underMap", UnderStand.selectUnderStandMap());
 		// 講師対応
@@ -60,7 +67,7 @@ public class StudentReportController {
 
 		if (bindingResult.hasErrors()) {
 
-			return viewCreateStudentDailyReport(model, studentCreateReportForm);
+			return viewCreateStudentDailyReport(model, loginUser, studentCreateReportForm);
 		}
 
 		// 本日の受講生日報存在check
@@ -96,6 +103,10 @@ public class StudentReportController {
 		studentCreateReportForm = this.studentReportService.viewUpdateStudentDailyReport(loginUser,
 				studentCreateReportForm);
 
+		// ログイン中のユーザ情報取得
+		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
+		// 本日日付
+		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 		// 理解度
 		model.addAttribute("underMap", UnderStand.selectUnderStandMap());
 		// 講師対応

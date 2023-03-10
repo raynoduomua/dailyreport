@@ -76,6 +76,18 @@
 		</div>
 	</div>
 	
+	<!-- 講師週報登録・更新 -->
+	<div th:fragment="teacher">
+		<div class="alert alert-success ms" th:if="${param.saveweekly}">
+			<small th:text="#{teacher.report.weekly.save.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-danger ms" th:if="${param.saveweeklyerror}">
+			<small th:text="#{teacher.report.weekly.saveerror.ms}"></small>
+		</div>
+	</div>
+	
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">
 		<div class="alert alert-success ms" th:if="${param.save}">

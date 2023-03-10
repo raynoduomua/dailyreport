@@ -15,7 +15,7 @@ public class StudentCreateReportForm {
 	@NotBlank(groups = ValidGroup1.class)
 	private String learningContents;
 
-	@NotNull(groups = ValidGroup1.class)
+	@NotNull(groups = ValidGroup1.class, message = "本日の理解度を選択してください")
 	private Integer understanding;
 
 	@NotBlank(groups = ValidGroup1.class)

@@ -22,26 +22,27 @@
 
 			<div class="row">
 				<div class="col">
-					<div class="card shadow">
+					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h2 class="text-center text-navy my-2" th:text="#{update.account.title}"></h2>
+							<h3 class="text-center text-navy my-3" th:text="#{update.account.title}"></h3>
+						
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: account}">
+							</div>
+						
 						</div>
 
 						<div class="card-body form-card-body">
 
 							<h6 class="card-title my-2 text-center text-danger" th:text="#{create.account.info}"></h6>
 
-							<!-- メッセージ -->
-							<div th:replace="~{fragments/message :: account}">
-							</div>
-
 							<form th:action="@{/admin/update-account}" method="post" th:object="${accountForm}"
 								autocomplete="off">
 								<input type="hidden" name="id" th:field="*{id}" />
 
 								<!-- name -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<label for="name" class="form-label" th:text="#{name}"></label>
 									<input class="form-control" type="text" th:errorclass="is-invalid"
 										th:field="*{name}">
@@ -50,7 +51,7 @@
 								</div>
 
 								<!-- nameKana -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<label for="nameKana" class="form-label" th:text="#{nameKana}"></label>
 									<input class="form-control" type="text" th:errorclass="is-invalid"
 										th:field="*{nameKana}">
@@ -59,7 +60,7 @@
 								</div>
 
 								<!-- loginId -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<label for="loginId" class="form-label" th:text="#{loginId}"></label>
 									<input class="form-control" type="text" th:errorclass="is-invalid"
 										th:field="*{loginId}" placeholder="例：姓_名(Yamada_Taro)">
@@ -68,7 +69,7 @@
 								</div>
 
 								<!-- password -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<label for="password" class="form-label" th:text="#{password}"></label>
 									<input class="form-control" type="password" th:errorclass="is-invalid"
 										th:field="*{password}">
@@ -77,7 +78,7 @@
 								</div>
 
 								<!-- passwordconfirm -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<label for="passwordconfirm" class="form-label"
 										th:text="#{passwordconfirm}"></label>
 									<input class="form-control" type="password" th:errorclass="is-invalid"
@@ -90,7 +91,7 @@
 								</div>
 
 								<!-- client -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<p class="form-label" th:text="#{clientname}"></p>
 									<select id="clientNameId" name="clientNameId" class="form-select">
 										<option></option>
@@ -105,7 +106,7 @@
 								</div>
 
 								<!-- course -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<p class="form-label" th:text="#{coursename}"></p>
 									<select id="courseNameId" name="courseNameId" class="form-select">
 										<option></option>
@@ -120,7 +121,7 @@
 								</div>
 
 								<!-- role -->
-								<div class="mb-2　form-group">
+								<div class="form-group mt-2">
 									<p class="form-label" th:text="#{role}"></p>
 									<div th:each="item : ${AuthorityMap}" class="form-check-inline">
 										<input type="radio" class="form-check-input" th:value="${item.value}"

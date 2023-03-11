@@ -63,6 +63,12 @@ a {
     border-top: 0;
 }
 
+table, td, th{
+	border: 1px #DCDCDC solid;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
 /* message.html */
 .ms{
 	width: 380px;
@@ -70,4 +76,18 @@ a {
 	margin: auto;
 	margin-top: 15px;
 	margin-bottom: 10px;
+}
+
+/* label */
+.form-label {
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+
+/* button */
+.form-btn {
+    display: block;
+    margin: auto;
+    width: 150px;
 }

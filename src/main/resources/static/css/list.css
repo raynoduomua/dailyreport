@@ -1,9 +1,9 @@
-.tbl-list td{
-	vertical-align: middle;
-}
-
 .tbl-list th {
     text-align: center;
+}
+
+.tbl-list td{
+	vertical-align: middle;
 }
 
 .list-id {
@@ -29,25 +29,6 @@
 .list-a{
 	display: block;
 	margin:auto;
-}
-
-table, td, th{
-	border: 1px #DCDCDC solid;
-	border-collapse: collapse;
-	padding: 5px;
-}
-
-.tbl-header{
-	margin-left: 400px;
-}
-
-.tbl-header th{
-	width: 200px;	
-}
-
-.tbl-header td{
-	width: 400px;
-	padding-left: 10px;	
 }
 
 .list-textarea{

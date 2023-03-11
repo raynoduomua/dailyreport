@@ -1,0 +1,14 @@
+.tbl-header{
+	margin-left: 400px;
+}
+
+.tbl-header th{
+	width: 200px;
+	text-align: center;
+}
+
+.tbl-header td{
+	width: 400px;
+	padding-left: 10px;
+	vertical-align: middle;
+}

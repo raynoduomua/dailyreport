@@ -4,8 +4,6 @@
 
 <head>
 	<meta charset="UTF-8" th:remove="tag">
-	<link rel="stylesheet" th:href="@{/css/list.css}">
-	<link rel="stylesheet" th:href="@{/css/admin/common.css}">
 	<link rel="stylesheet" th:href="@{/css/student/report.css}">
 </head>
 
@@ -29,7 +27,7 @@
 						<div class="card-header">
 							<h3 class="text-center text-navy my-3" th:text="#{create.student.title}"></h3>
 
-							<table th:each="account : ${loginAccount}" class="tbl-list tbl-header my-1">
+							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
 								<tr>
 									<th th:text="#{name}"></th>
 									<td th:text="${account.name}"></td>
@@ -112,9 +110,7 @@
 								<!-- question -->
 								<div class="mb-2　form-group">
 									<label for="question" class="form-label" th:text="#{question}"></label>
-									<textarea th:field="*{question}" rows="3" cols="137" class="form-textarea"
-										th:errorclass="is-invalid"></textarea>
-									<div class="invalid-feedback" th:errors="*{question}">
+									<textarea th:field="*{question}" rows="3" cols="137" class="form-textarea"></textarea>
 									</div>
 								</div>
 

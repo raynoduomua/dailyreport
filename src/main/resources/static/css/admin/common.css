@@ -6,18 +6,6 @@
     margin: auto;
 }
 
-.form-label {
-    text-align: center;
-    display: block;
-    font-weight: bold;
-}
-
-.form-btn {
-    display: block;
-    margin: auto;
-    width: 150px;
-}
-
 .form-select{
 	width: 390px;
 }

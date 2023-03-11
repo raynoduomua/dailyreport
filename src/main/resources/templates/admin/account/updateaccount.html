@@ -87,7 +87,7 @@
 									</div>
 									<!-- 相関チェック password　passwordconfirm -->
 									<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}"
-										style="color:red;"></p>
+										style="color:red;" class="form-error"></p>
 								</div>
 
 								<!-- client -->
@@ -132,7 +132,7 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{update}"></button>
 							</form>
 
 							<div class="mb-2">

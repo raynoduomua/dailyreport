@@ -35,7 +35,6 @@
 
 						<!-- クライアント名更新 -->
 						<div class="card-body form-card-body">
-
 							<form th:action="@{/admin/update-client}" method="post" th:object="${clientForm}"
 								autocomplete="off">
 								<input type="hidden" name="id" th:field="*{id}" />

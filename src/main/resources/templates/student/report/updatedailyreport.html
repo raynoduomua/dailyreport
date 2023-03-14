@@ -53,7 +53,7 @@
 							<form th:action="@{/student/update-report}" method="post"
 								th:object="${studentCreateReportForm}" autocomplete="off">
 								<input type="hidden" name="id" th:field="*{id}" />
-								<input type="hidden" name="id" th:field="*{userId}" />
+								<input type="hidden" name="userId" th:field="*{userId}" />
 
 								<!-- learningContents -->
 								<div class="mb-2　form-group">

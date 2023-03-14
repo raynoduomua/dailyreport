@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 以下の記載があることで、MyBatis専用のタグが使用できる -->
+		<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapperタグでMapperインターフェースと紐づける -->
+<mapper
+	namespace="com.example.dailyreport.infrastructure.mapper.AccountAndTeachersWeeklyReportsMapper">
+	<!-- resultMapタグでテーブルのカラムとEntityのフィールドを紐づける -->
+	<resultMap
+		type="com.example.dailyreport.infrastructure.dto.AccountAndTeachersWeeklyReports"
+		id="report">
+		<!-- idタグで主キーとフィールドを紐づける -->
+		<id column="ID" property="id" />
+		<!-- resultタグで主キー以外のカラムとフィールドを紐づける -->
+		<result column="NAME" property="name" />
+		<result column="WEEKLY_REPORTS" property="weeklyReports" />
+		<result column="CLASS_WEEK" property="classWeek" />
+		<result column="CREATED_AT" property="createdAt" />
+		<result column="UPDATED_AT" property="updatedAt" />
+		<result column="USER_ID" property="userId" />
+	</resultMap>
+
+	<!-- データを取得する時はselectタグを使用する -->
+	<!-- id属性に紐づけるメソッド名を定義する -->
+	<!-- resultMap属性にはメソッドの返り値となるEntityを定義する（返り値がListでも要素となるEntityを指定する） -->
+	<select id="findbyUserIdAndCourseIdAndClassWeekBetween"
+		resultMap="report">
+		SELECT
+			twr.ID,
+			a.NAME,
+			twr.WEEKLY_REPORTS,
+			twr.USER_ID,
+			twr.CLASS_WEEK,
+			twr.CREATED_AT,
+			twr.UPDATED_AT
+		FROM
+			accounts a
+		inner join
+			teachersweeklyreports twr
+		on
+			a.ID = twr.USER_ID
+		and
+			a.COURSE_NAME_ID = twr.COURSE_ID
+		<where>
+			<if test="Monday != null">
+				twr.CLASS_WEEK
+				between
+				#{Monday} and #{Friday}
+			</if>
+			<if test="userId != null">
+				and twr.USER_ID = #{userId}
+			</if>
+		</where>
+		;
+	</select>
+</mapper>

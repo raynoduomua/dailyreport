@@ -32,7 +32,7 @@
 						<li class="nav-item">
 							<a th:href="@{/admin/create-client}" class="nav-link text-white">
 								<i class="bi bi-person-fill me-2"></i>
-								クライアント名登録
+								クライアント名作成
 							</a>
 						</li>
 						<!-- クライアント名一覧(ADMIN) -->
@@ -48,7 +48,7 @@
 						<li class="nav-item">
 							<a th:href="@{/admin/create-course}" class="nav-link text-white">
 								<i class="bi bi-table me-2"></i>
-								講座名登録
+								講座名作成
 							</a>
 						</li>
 						<!-- 講座名一覧(ADMIN) -->
@@ -75,6 +75,15 @@
 								アカウント名一覧
 							</a>
 						</li>
+						<!-- アカウント登録(ADMIN) -->
+						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<li class="nav-item">
+							<a th:href="@{/admin/create-mini-exam}" class="nav-link text-white">
+								<i class="bi bi-people-fill me-2"></i>
+								単元テスト名作成
+							</a>
+						</li>
+						
 						<!-- 講師日報作成(TEACHER) -->
 						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
 						<li class="nav-item">
@@ -102,11 +111,12 @@
 						<!-- 講師週報編集(TEACHER) -->
 						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
 						<li class="nav-item">
-							<a th:href="@{/teacher/update-weekly-report}" class="nav-link text-white">
+							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								講師週報編集<br>　　(今週分)
 							</a>
 						</li>
+						
 						<!-- 受講生日報作成(STUDENT) -->
 						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
 						<li class="nav-item">
@@ -130,7 +140,7 @@
 								退会
 							</a>
 						</li>
-						<!-- ログアウト（ADMIN, USER） -->
+						<!-- ログアウト（All） -->
 						<li class="nav-item">
 							<a th:href="@{/dailyreport/logout}" class="nav-link text-white">
 								<i class="bi bi-box-arrow-right me-2"></i>

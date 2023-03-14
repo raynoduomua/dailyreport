@@ -87,6 +87,17 @@
 			<small th:text="#{teacher.report.weekly.saveerror.ms}"></small>
 		</div>
 	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-danger ms" th:if="${param.editweeklyerror}">
+			<small th:text="#{teacher.report.weekly.editerror1.ms}"></small><br>
+			<small th:text="#{teacher.report.weekly.editerror2.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-success ms" th:if="${param.updateweekly}">
+			<small th:text="#{teacher.report.weekly.update.ms}"></small>
+		</div>
+	</div>
 	
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">

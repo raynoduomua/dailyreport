@@ -58,7 +58,7 @@
 								th:object="${studentCreateReportForm}" autocomplete="off">
 
 								<!-- learningContents -->
-								<div class="mb-2　form-group">
+								<div class="mt-3 form-group">
 									<label for="learningContents" class="form-label"
 										th:text="#{learningContents}"></label>
 									<textarea th:field="*{learningContents}" rows="3" cols="137" class="form-textarea"
@@ -68,7 +68,7 @@
 								</div>
 
 								<!-- understanding -->
-								<div class="mb-2　form-group">
+								<div class="mt-3 form-group">
 									<p class="form-label" th:text="#{understanding}"></p>
 									<div th:each="item : ${underMap}" class="form-check-inline">
 										<input type="radio" class="form-check-input radio-button"
@@ -83,7 +83,7 @@
 								</div>
 
 								<!-- understandingDetail -->
-								<div class="mb-2　form-group">
+								<div class="mt-3 form-group">
 									<label for="understandingDetail" class="form-label"
 										th:text="#{understandingDetail}"></label>
 									<textarea th:field="*{understandingDetail}" rows="3" cols="137"
@@ -93,7 +93,7 @@
 								</div>
 
 								<!-- teacherSupport -->
-								<div class="mb-2　form-group">
+								<div class="mt-3 form-group">
 									<p class="form-label" th:text="#{teacherSupport}"></p>
 									<div th:each="item : ${teacherMap}" class="form-check-inline">
 										<input type="radio" class="form-check-input radio-button"
@@ -108,13 +108,13 @@
 								</div>
 
 								<!-- question -->
-								<div class="mb-2　form-group">
+								<div class="my-3 form-group">
 									<label for="question" class="form-label" th:text="#{question}"></label>
 									<textarea th:field="*{question}" rows="3" cols="137" class="form-textarea"></textarea>
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{insert}"></button>
 							</form>
 						</div>
 					</div>

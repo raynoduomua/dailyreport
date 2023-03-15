@@ -23,7 +23,7 @@ public class AccountForm {
 	private String nameKana;
 
 	@NotBlank(groups = ValidGroup1.class)
-	@Pattern(regexp = "^[a-zA-Z_]+$", groups = ValidGroup2.class, message = "半角英字小文字大文字、_(アンダーバー)のみで入力してください")
+	@Pattern(regexp = "^[a-zA-Z0-9_]+$", groups = ValidGroup2.class, message = "半角英数字、_(アンダーバー)のみで入力してください")
 	@UniqueLoginID(groups = ValidGroup3.class)
 	private String loginId;
 

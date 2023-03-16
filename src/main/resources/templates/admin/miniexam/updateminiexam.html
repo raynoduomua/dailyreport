@@ -25,12 +25,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{create.miniexam.title}"></h3>
-
-							<!-- メッセージ -->
-							<div th:replace="~{fragments/message :: miniexam}">
-							</div>
-
+							<h3 class="text-center text-navy my-3" th:text="#{update.miniexam.title}"></h3>
 						</div>
 
 						<!-- 単元テスト名登録 -->
@@ -41,8 +36,9 @@
 							<h6 class="card-title my-3 text-center text-danger" th:text="#{create.miniexam.info-2}">
 							</h6>
 
-							<form th:action="@{/admin/save-mini-exam}" method="post" th:object="${miniExamNameForm}"
+							<form th:action="@{/admin/update-mini-exam}" method="post" th:object="${miniExamNameForm}"
 								autocomplete="off">
+								<input type="hidden" name="id" th:field="*{id}" />
 
 								<!-- testName -->
 								<div class="my-3">
@@ -53,9 +49,13 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn" type="submit" th:text="#{update}"></button>
 							</form>
 						</div>
+						
+						<form th:action="@{/admin/list-mini-exam}" method="get">
+							<input type="submit" th:value="#{return.list}" class="btn btn-dark form-btn mb-3" />
+						</form>
 
 					</div>
 				</div>

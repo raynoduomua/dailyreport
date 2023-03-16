@@ -59,6 +59,11 @@
 			<small th:text="#{miniexam.save.ms}"></small>
 		</div>
 	</div>
+	<div th:fragment="miniexam">
+		<div class="alert alert-success ms" th:if="${param.update}">
+			<small th:text="#{miniexam.update.ms}"></small>
+		</div>
+	</div>
 	
 	<!-- 講師日報登録・更新 -->
 	<div th:fragment="teacher">

@@ -1,6 +1,7 @@
 package com.example.dailyreport.domain.service.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,33 @@ public class AdminMiniExamService {
 	public List<MiniExamName> viewMiniExamList() {
 
 		return this.adminMiniExamRepository.findAll();
+	}
+
+	public Optional<MiniExamName> findById(Integer id) {
+
+		return this.adminMiniExamRepository.findById(id);
+	}
+
+	public MiniExamNameForm viewupdateMiniExam(Integer id, MiniExamNameForm miniExamNameForm) {
+
+		Optional<MiniExamName> miniExamOptional = this.findById(id);
+		miniExamOptional.ifPresent(miniexam -> {
+			miniExamNameForm.setId(miniexam.getId());
+			miniExamNameForm.setTestName(miniexam.getTestName());
+		});
+
+		return miniExamNameForm;
+	}
+
+	public void updateMiniExam(MiniExamNameForm miniExamNameForm) {
+
+		Optional<MiniExamName> miniexamOptional = this.findById(miniExamNameForm.getId());
+		miniexamOptional.ifPresent(miniexam -> {
+			miniexam.setTestName(miniExamNameForm.getTestName());
+			miniexam.setUpdatedAt(LocalDateNow.getLocalDateNow());
+
+			this.adminMiniExamRepository.save(miniexam);
+		});
 	}
 
 }

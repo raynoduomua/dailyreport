@@ -111,6 +111,18 @@
 		</div>
 	</div>
 	
+	<!-- 講師受講生単元テスト点数登録・更新 -->
+	<div th:fragment="teacher">
+		<div class="alert alert-success ms" th:if="${param.saveminiexam}">
+			<small th:text="#{teacher.miniexam.save.ms}"></small>
+		</div>
+	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-danger ms" th:if="${param.saveminiexamerror}">
+			<small th:text="#{teacher.miniexam.saveerror.ms}"></small>
+		</div>
+	</div>
+	
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">
 		<div class="alert alert-success ms" th:if="${param.save}">
@@ -128,13 +140,6 @@
 		</div>
 	</div>
 	
-	<!-- ログイン情報更新メッセージ -->
-	<div th:fragment="info">
-		<div class="alert alert-success ms mt-2 mb-4" th:if="${param.update}">
-			<small th:text="#{info.update.ms}"></small>
-		</div>
-	</div>
-
 	<!-- エラーメッセージ(404 Not Foundなど) -->
 	<div th:fragment="error">
 		<div class="text-center">

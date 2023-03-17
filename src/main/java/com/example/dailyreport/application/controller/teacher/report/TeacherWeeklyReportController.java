@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.controller.teacher;
+package com.example.dailyreport.application.controller.teacher.report;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,15 +17,13 @@ import com.example.dailyreport.application.form_validation.GroupOrder;
 import com.example.dailyreport.application.form_validation.TeacherWeeklyReportForm;
 import com.example.dailyreport.domain.service.admin.AdminAccountService;
 import com.example.dailyreport.domain.service.common.CommonService;
-import com.example.dailyreport.domain.service.teacher.TeacherWeeklyReportService;
+import com.example.dailyreport.domain.service.teacher.report.TeacherWeeklyReportService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/teacher")
-@Slf4j
 public class TeacherWeeklyReportController {
 
 	private final TeacherWeeklyReportService teacherWeeklyReportService;
@@ -156,7 +154,7 @@ public class TeacherWeeklyReportController {
 
 		this.teacherWeeklyReportService.updateTeacherWeeklyReport(teacherWeeklyReportForm);
 
-		return "redirect:/teacher/edit-weekly-report";
+		return "redirect:/teacher/edit-weekly-report?updateweekly";
 	}
 
 }

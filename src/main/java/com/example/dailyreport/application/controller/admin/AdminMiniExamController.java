@@ -68,6 +68,12 @@ public class AdminMiniExamController {
 		return "admin/list/miniexam";
 	}
 
+	/**
+	 * 単元テスト名編集画面
+	 * @param id               テーブル「unittestsname」 カラム「ID」
+	 * @param miniExamNameForm Formクラス
+	 * @return                 単元テスト名編集画面
+	 */
 	@GetMapping("/edit-mini-exam/{id}")
 	public String viewupdateMiniExam(@PathVariable Integer id,
 			@ModelAttribute("miniExamNameForm") MiniExamNameForm miniExamNameForm) {
@@ -77,6 +83,12 @@ public class AdminMiniExamController {
 		return "admin/miniexam/updateminiexam";
 	}
 
+	/**
+	 * 単元テスト名更新処理
+	 * @param miniExamNameForm Formクラス
+	 * @param bindingResult    バリデーションチェック
+	 * @return                 単元テスト名一覧画面
+	 */
 	@PostMapping("/update-mini-exam")
 	public String updateMiniExam(
 			@Validated(GroupOrder.class) @ModelAttribute("miniExamNameForm") MiniExamNameForm miniExamNameForm,

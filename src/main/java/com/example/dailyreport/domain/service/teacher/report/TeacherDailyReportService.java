@@ -1,4 +1,4 @@
-package com.example.dailyreport.domain.service.teacher;
+package com.example.dailyreport.domain.service.teacher.report;
 
 import java.util.Optional;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.TeacherDailyReportForm;
-import com.example.dailyreport.infrastructure.entity.teacher.TeacherDailyReport;
-import com.example.dailyreport.infrastructure.repository.teacher.TeacherDailyReportRepository;
+import com.example.dailyreport.infrastructure.entity.teacher.report.TeacherDailyReport;
+import com.example.dailyreport.infrastructure.repository.teacher.report.TeacherDailyReportRepository;
 
 import lombok.RequiredArgsConstructor;
 

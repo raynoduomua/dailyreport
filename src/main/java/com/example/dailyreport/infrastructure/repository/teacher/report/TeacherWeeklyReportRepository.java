@@ -1,11 +1,13 @@
-package com.example.dailyreport.infrastructure.repository.teacher;
+package com.example.dailyreport.infrastructure.repository.teacher.report;
 
 import java.time.LocalDate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.example.dailyreport.infrastructure.entity.teacher.TeacherWeeklyReport;
+import com.example.dailyreport.infrastructure.entity.teacher.report.TeacherWeeklyReport;
 
+@Repository
 public interface TeacherWeeklyReportRepository extends JpaRepository<TeacherWeeklyReport, Integer> {
 
 	/**

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="UTF-8" th:remove="tag">
+	<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+</head>
+
+<body>
+
+	<!-- サイドバーの表示 -->
+	<div layout:fragment="sidebar" th:replace="~{fragments/sidebar :: sidebar}">
+	</div>
+
+	<!-- コンテンツの表示 -->
+	<main layout:fragment="content" class="offcanvas-outside bg-light">
+		<div class="container-fluid">
+			<!-- トグルボタン -->
+			<div th:replace="~{fragments/sidebar :: toggler}">
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="card shadow mt-3">
+
+						<div class="card-header">
+							<h3 class="text-center text-navy my-3" th:text="#{teacher.miniexam.title}"></h3>
+							
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: teacher}">
+							</div>
+							
+						</div>
+
+						<div class="card-body form-card-body">
+
+							<h6 class="card-title my-2 text-center text-danger" th:text="#{create.account.info}"></h6>
+
+							<form th:action="@{/teacher/save-mini-exam}" method="post" th:object="${teacherMiniExamForm}"
+								autocomplete="off">
+								
+								<!-- student -->
+								<div class="form-group">
+									<p class="form-label" th:text="#{student.name}"></p>
+									<select id="userId" name="userId" class="form-select form-select-student">
+										<option></option>
+										<option th:each="student : ${students}" th:value="${student.id}"
+											th:text="${student.name}" th:selected="${student.id} == *{userId}"
+											th:field="*{userId}" th:errorclass="is-invalid">
+										</option>
+									</select>
+									<div class="text-danger form-error-edit" th:if="${#fields.hasErrors('userId')}"
+										th:errors="*{userId}">
+									</div>
+								</div>
+								
+								<!-- miniexamName -->
+								<div class="form-group">
+									<p class="form-label" th:text="#{miniexamName}"></p>
+									<select id="testId" name="testId" class="form-select form-select-student">
+										<option></option>
+										<option th:each="miniexam : ${miniexams}" th:value="${miniexam.id}"
+											th:text="${miniexam.testName}" th:selected="${miniexam.id} == *{testId}"
+											th:field="*{testId}" th:errorclass="is-invalid">
+										</option>
+									</select>
+									<div class="text-danger form-error-edit" th:if="${#fields.hasErrors('testId')}"
+										th:errors="*{testId}">
+									</div>
+								</div>
+
+								<!-- date -->
+								<div class="form-group mt-2">
+									<label for="testDate" class="form-label" th:text="#{testDate}"></label>
+									<input type="date" class="form-control" th:errorclass="is-invalid" th:field="*{testDate}">
+									<div class="invalid-feedback" th:errors="*{testDate}">
+									</div>
+								</div>
+
+								<!-- score -->
+								<div class="form-group mt-2">
+									<label for="score" class="form-label" th:text="#{score}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{score}">
+									<div class="invalid-feedback" th:errors="*{score}">
+									</div>
+								</div>
+
+								<!-- scoreAverage -->
+								<div class="form-group mt-2">
+									<label for="scoreAverage" class="form-label" th:text="#{scoreAverage}"></label>
+									<input class="form-control" type="text" th:errorclass="is-invalid"
+										th:field="*{scoreAverage}">
+									<div class="invalid-feedback" th:errors="*{scoreAverage}">
+									</div>
+								</div>
+
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.example.dailyreport.domain.service.teacher;
+package com.example.dailyreport.domain.service.teacher.report;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,9 @@ import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.TeacherWeeklyReportForm;
 import com.example.dailyreport.infrastructure.dto.AccountAndTeachersWeeklyReports;
-import com.example.dailyreport.infrastructure.entity.teacher.TeacherWeeklyReport;
+import com.example.dailyreport.infrastructure.entity.teacher.report.TeacherWeeklyReport;
 import com.example.dailyreport.infrastructure.mapper.AccountAndTeachersWeeklyReportsMapper;
-import com.example.dailyreport.infrastructure.repository.teacher.TeacherWeeklyReportRepository;
+import com.example.dailyreport.infrastructure.repository.teacher.report.TeacherWeeklyReportRepository;
 
 import lombok.RequiredArgsConstructor;
 

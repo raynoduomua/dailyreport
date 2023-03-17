@@ -1,4 +1,4 @@
-package com.example.dailyreport.infrastructure.entity.teacher;
+package com.example.dailyreport.infrastructure.entity.teacher.report;
 
 import java.time.LocalDate;
 
@@ -13,22 +13,25 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "teachersdailyreports")
-public class TeacherDailyReport {
+@Table(name = "teachersweeklyreports")
+public class TeacherWeeklyReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
 
-	@Column(name = "DAILY_REPORTS")
-	private String dailyReports;
+	@Column(name = "WEEKLY_REPORTS")
+	private String weeklyReports;
 
 	@Column(name = "COURSE_ID")
 	private Integer courseId;
 
-	@Column(name = "CLASS_DATE")
-	private LocalDate classDate;
+	@Column(name = "USER_ID")
+	private Integer userId;
+
+	@Column(name = "CLASS_WEEK")
+	private LocalDate classWeek;
 
 	@Column(name = "CREATED_AT")
 	private LocalDate createdAt;

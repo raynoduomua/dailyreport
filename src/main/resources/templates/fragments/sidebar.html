@@ -97,7 +97,7 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師日報作成
+								講師_日報作成
 							</a>
 						</li>
 						<!-- 講師日報編集(TEACHER) -->
@@ -105,7 +105,7 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師日報編集<br>　　(本日分)
+								講師_日報編集<br>　　(本日分)
 							</a>
 						</li>
 						<!-- 講師週報作成(TEACHER) -->
@@ -113,7 +113,7 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師週報作成
+								講師_週報作成
 							</a>
 						</li>
 						<!-- 講師週報編集(TEACHER) -->
@@ -121,7 +121,14 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師週報編集<br>　　(今週分)
+								講師_週報編集<br>　　(今週分)
+							</a>
+						</li>
+						<!-- 受講生単元テスト点数入力（TEACHER） -->
+						<li class="nav-item">
+							<a th:href="@{/teacher/create-mini-exam}" class="nav-link text-white">
+								<i class="bi bi-exclamation-octagon-fill me-2"></i>
+								講師_受講生<br>　　単元テスト点数入力
 							</a>
 						</li>
 						
@@ -130,7 +137,7 @@
 						<li class="nav-item">
 							<a th:href="@{/student/create-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								受講生日報作成
+								受講生_日報作成
 							</a>
 						</li>
 						<!-- 受講生日報編集(STUDENT) -->
@@ -138,16 +145,10 @@
 						<li class="nav-item">
 							<a th:href="@{/student/edit-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								受講生日報編集<br>　　(本日分)
+								受講生_日報編集<br>　　(本日分)
 							</a>
 						</li>
-						<!-- 退会（ADMIN, USER） -->
-						<li class="nav-item">
-							<a th:href="@{/deleteInfo}" class="nav-link text-white">
-								<i class="bi bi-exclamation-octagon-fill me-2"></i>
-								退会
-							</a>
-						</li>
+						
 						<!-- ログアウト（All） -->
 						<li class="nav-item">
 							<a th:href="@{/dailyreport/logout}" class="nav-link text-white">

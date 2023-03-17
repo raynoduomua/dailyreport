@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.controller.teacher;
+package com.example.dailyreport.application.controller.teacher.report;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.GroupOrder;
 import com.example.dailyreport.application.form_validation.TeacherDailyReportForm;
 import com.example.dailyreport.domain.service.common.CommonService;
-import com.example.dailyreport.domain.service.teacher.TeacherDailyReportService;
+import com.example.dailyreport.domain.service.teacher.report.TeacherDailyReportService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -8,6 +8,7 @@ import com.example.dailyreport.infrastructure.entity.teacher.miniexam.TeacherMin
 @Repository
 public interface TeacherMiniExamRepository extends JpaRepository<TeacherMiniExam, Integer> {
 
+	// 存在チェック
 	boolean existsByUserIdAndTestId(Integer userId, Integer testId);
 
 }

@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class TeacherMiniExamForm {
 
+	private Integer id;
+
 	@NotNull(groups = ValidGroup1.class, message = "受講生を選択してください")
 	private Integer userId;
 

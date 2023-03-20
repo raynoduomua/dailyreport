@@ -25,7 +25,6 @@
 				</div>
 
 				<div class="offcanvas-body pt-0">
-					<hr class="mt-1">
 					<ul class="navbar-nav">
 						<!-- クライアント名登録（ADMIN） -->
 						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
@@ -105,7 +104,7 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_日報編集<br>　　(本日分)
+								日報編集_本日分
 							</a>
 						</li>
 						<!-- 講師週報作成(TEACHER) -->
@@ -121,14 +120,21 @@
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_週報編集<br>　　(今週分)
+								週報編集_今週分
 							</a>
 						</li>
 						<!-- 受講生単元テスト点数入力（TEACHER） -->
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
-								講師_受講生<br>　　単元テスト点数入力
+								講師_単元テスト<br>　　点数入力
+							</a>
+						</li>
+						<!-- 受講生単元テスト編集（TEACHER） -->
+						<li class="nav-item">
+							<a th:href="@{/teacher/edit-mini-exam}" class="nav-link text-white">
+								<i class="bi bi-exclamation-octagon-fill me-2"></i>
+								単元テスト編集
 							</a>
 						</li>
 						
@@ -145,7 +151,7 @@
 						<li class="nav-item">
 							<a th:href="@{/student/edit-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								受講生_日報編集<br>　　(本日分)
+								日報編集_本日分
 							</a>
 						</li>
 						

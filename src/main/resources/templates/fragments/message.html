@@ -122,6 +122,11 @@
 			<small th:text="#{teacher.miniexam.saveerror.ms}"></small>
 		</div>
 	</div>
+	<div th:fragment="teacher">
+		<div class="alert alert-success ms" th:if="${param.updateminiexam}">
+			<small th:text="#{teacher.miniexam.update.ms}"></small>
+		</div>
+	</div>
 	
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">

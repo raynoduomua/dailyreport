@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 以下の記載があることで、MyBatis専用のタグが使用できる -->
+		<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapperタグでMapperインターフェースと紐づける -->
+<mapper
+	namespace="com.example.dailyreport.infrastructure.mapper.AccountAndUnittestsAndUnittestsnameMapper">
+	<!-- resultMapタグでテーブルのカラムとEntityのフィールドを紐づける -->
+	<resultMap
+		type="com.example.dailyreport.infrastructure.dto.AccountAndUnittestsAndUnittestsname"
+		id="miniexams">
+		<!-- idタグで主キーとフィールドを紐づける -->
+		<id column="ID" property="id" />
+		<!-- resultタグで主キー以外のカラムとフィールドを紐づける -->
+		<result column="NAME" property="name" />
+		<result column="USER_ID" property="userId" />
+		<result column="TEST_NAME" property="testName" />
+		<result column="SCORE" property="score" />
+		<result column="SCORE_AVERAGE" property="scoreAverage" />
+		<result column="TEST_DATE" property="testDate" />
+		<result column="CREATED_AT" property="createdAt" />
+		<result column="UPDATED_AT" property="updatedAt" />
+	</resultMap>
+
+	<!-- データを取得する時はselectタグを使用する -->
+	<!-- id属性に紐づけるメソッド名を定義する -->
+	<!-- resultMap属性にはメソッドの返り値となるEntityを定義する（返り値がListでも要素となるEntityを指定する） -->
+	<select id="findStudentUnitTests" resultMap="miniexams">
+		<!-- 実行するSQLを定義する -->
+		SELECT
+			ut.ID,
+			a.NAME,
+			ut.USER_ID,
+			utn.TEST_NAME,
+			ut.SCORE,
+			ut.SCORE_AVERAGE,
+			ut.TEST_DATE,
+			ut.CREATED_AT,
+			ut.UPDATED_AT
+		FROM
+			accounts a
+		inner join
+			unittests ut
+		on
+			a.ID = ut.USER_ID
+		inner join
+			unittestsname utn
+		on
+			ut.TEST_ID = utn.ID
+		;
+	</select>
+</mapper>

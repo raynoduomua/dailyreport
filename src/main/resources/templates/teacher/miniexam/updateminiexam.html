@@ -25,7 +25,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{teacher.miniexam.title}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{update.teacher.miniexam.title}"></h3>
 							
 							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
 								<tr>
@@ -52,14 +52,14 @@
 
 							<h6 class="card-title my-2 text-center text-danger" th:text="#{create.account.info}"></h6>
 
-							<form th:action="@{/teacher/save-mini-exam}" method="post" th:object="${teacherMiniExamForm}"
+							<form th:action="@{/teacher/update-mini-exam}" method="post" th:object="${teacherMiniExamForm}"
 								autocomplete="off">
+								<input type="hidden" name="id" th:field="*{id}" />
 								
 								<!-- student -->
 								<div class="form-group">
 									<p class="form-label" th:text="#{student.name}"></p>
-									<select id="userId" name="userId" class="form-select form-select-student">
-										<option></option>
+									<select id="userId" name="userId" class="form-select form-select-student" disabled>
 										<option th:each="student : ${students}" th:value="${student.id}"
 											th:text="${student.name}" th:selected="${student.id} == *{userId}"
 											th:field="*{userId}" th:errorclass="is-invalid">
@@ -68,13 +68,13 @@
 									<div class="text-danger form-error-edit" th:if="${#fields.hasErrors('userId')}"
 										th:errors="*{userId}">
 									</div>
+									<input type="hidden" name="userId" th:field="*{userId}" />
 								</div>
 								
 								<!-- miniexamName -->
 								<div class="form-group">
 									<p class="form-label" th:text="#{miniexamName}"></p>
-									<select id="testId" name="testId" class="form-select form-select-student">
-										<option></option>
+									<select id="testId" name="testId" class="form-select form-select-student" disabled>
 										<option th:each="miniexam : ${miniexams}" th:value="${miniexam.id}"
 											th:text="${miniexam.testName}" th:selected="${miniexam.id} == *{testId}"
 											th:field="*{testId}" th:errorclass="is-invalid">
@@ -83,14 +83,16 @@
 									<div class="text-danger form-error-edit" th:if="${#fields.hasErrors('testId')}"
 										th:errors="*{testId}">
 									</div>
+									<input type="hidden" name="testId" th:field="*{testId}" />
 								</div>
 
 								<!-- date -->
 								<div class="form-group mt-2">
 									<label for="testDate" class="form-label" th:text="#{testDate}"></label>
-									<input type="date" class="form-control" th:errorclass="is-invalid" th:field="*{testDate}">
+									<input type="date" class="form-control" th:errorclass="is-invalid" th:field="*{testDate}" disabled>
 									<div class="invalid-feedback" th:errors="*{testDate}">
 									</div>
+									<input type="hidden" name="testDate" th:field="*{testDate}" />
 								</div>
 
 								<!-- score -->
@@ -111,7 +113,7 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{update}"></button>
 							</form>
 						</div>
 					</div>

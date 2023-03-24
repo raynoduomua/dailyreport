@@ -27,64 +27,64 @@
 				<div class="offcanvas-body pt-0">
 					<ul class="navbar-nav">
 						<!-- クライアント名登録（ADMIN） -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/create-client}" class="nav-link text-white">
 								<i class="bi bi-person-fill me-2"></i>
 								クライアント名作成
 							</a>
 						</li>
 						<!-- クライアント名一覧(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/list-client}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								クライアント名一覧
 							</a>
 						</li>
 						<!-- 講座名登録(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/create-course}" class="nav-link text-white">
 								<i class="bi bi-table me-2"></i>
 								講座名作成
 							</a>
 						</li>
 						<!-- 講座名一覧(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/list-course}" class="nav-link text-white">
 								<i class="bi bi-person-plus-fill me-2"></i>
 								講座名一覧
 							</a>
 						</li>
 						<!-- アカウント登録(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/create-account}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								アカウント作成
 							</a>
 						</li>
 						<!-- クライアント名一覧(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/list-account}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								アカウント名一覧
 							</a>
 						</li>
 						<!-- アカウント登録(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/create-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								単元テスト名作成
 							</a>
 						</li>
 						<!-- アカウント登録(ADMIN) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/admin/list-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								単元テスト名一覧
@@ -92,48 +92,48 @@
 						</li>
 						
 						<!-- 講師_日報作成(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								講師_日報作成
 							</a>
 						</li>
 						<!-- 講師_日報編集(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								日報編集_本日分
 							</a>
 						</li>
 						<!-- 講師_週報作成(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								講師_週報作成
 							</a>
 						</li>
 						<!-- 講師_週報編集(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								週報編集_今週分
 							</a>
 						</li>
 						<!-- 講師_受講生単元テスト点数入力（TEACHER） -->
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
 								講師_単元テスト<br>　　点数入力
 							</a>
 						</li>
-						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<!-- 講師_受講生単元テスト編集（TEACHER） -->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/edit-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
 								単元テスト編集
@@ -141,16 +141,16 @@
 						</li>
 						
 						<!-- 受講生_日報作成(STUDENT) -->
-						<!--<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/student/create-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								受講生_日報作成
 							</a>
 						</li>
 						<!-- 受講生_日報編集(STUDENT) -->
-						<!--<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">-->
-						<li class="nav-item">
+						<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">
+						<!--<li class="nav-item">-->
 							<a th:href="@{/student/edit-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								日報編集_本日分

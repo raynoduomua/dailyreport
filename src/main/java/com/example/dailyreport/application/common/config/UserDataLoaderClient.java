@@ -43,10 +43,10 @@ public class UserDataLoaderClient implements ApplicationRunner {
 		client2.setCreatedAt(LocalDateNow.getLocalDateNow());
 		client2.setUpdatedAt(null);
 
-		if (this.adminAccountRepository.findByLoginId(client1.getLoginId()).isEmpty()) {
-			this.adminAccountRepository.save(client1);
-			this.adminAccountRepository.save(client2);
-		}
+		//		if (this.adminAccountRepository.findByLoginId(client1.getLoginId()).isEmpty()) {
+		//			this.adminAccountRepository.save(client1);
+		//			this.adminAccountRepository.save(client2);
+		//		}
 
 	}
 }

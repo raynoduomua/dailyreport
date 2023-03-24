@@ -32,9 +32,9 @@ public class UserDataLoaderAdmin implements ApplicationRunner {
 		admin.setCreatedAt(LocalDateNow.getLocalDateNow());
 		admin.setUpdatedAt(null);
 
-		if (this.adminAccountRepository.findByLoginId(admin.getLoginId()).isEmpty()) {
-			this.adminAccountRepository.save(admin);
-		}
+		//		if (this.adminAccountRepository.findByLoginId(admin.getLoginId()).isEmpty()) {
+		//			this.adminAccountRepository.save(admin);
+		//		}
 
 	}
 

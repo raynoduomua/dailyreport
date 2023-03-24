@@ -29,7 +29,9 @@ public class SecurityConfig {
 						.atCommonLocations())
 				.permitAll()
 				.mvcMatchers("/dailyreport/loginForm").permitAll()
-				//				.mvcMatchers("/admin/**").hasAnyAuthority(Authority.ADMIN.name())
+				.mvcMatchers("/admin/**").hasAnyAuthority("ADMIN")
+				.mvcMatchers("/teacher/**").hasAnyAuthority("TEACHER")
+				.mvcMatchers("/student/**").hasAnyAuthority("STUDENT")
 				.anyRequest().authenticated())
 				.formLogin(login -> login
 						.loginProcessingUrl("/login")

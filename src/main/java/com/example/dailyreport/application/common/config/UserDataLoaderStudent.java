@@ -65,12 +65,12 @@ public class UserDataLoaderStudent implements ApplicationRunner {
 		student4.setCreatedAt(LocalDateNow.getLocalDateNow());
 		student4.setUpdatedAt(null);
 
-		if (this.adminAccountRepository.findByLoginId(student1.getLoginId()).isEmpty()) {
-			this.adminAccountRepository.save(student1);
-			this.adminAccountRepository.save(student2);
-			this.adminAccountRepository.save(student3);
-			this.adminAccountRepository.save(student4);
-		}
+		//		if (this.adminAccountRepository.findByLoginId(student1.getLoginId()).isEmpty()) {
+		//			this.adminAccountRepository.save(student1);
+		//			this.adminAccountRepository.save(student2);
+		//			this.adminAccountRepository.save(student3);
+		//			this.adminAccountRepository.save(student4);
+		//		}
 
 	}
 }

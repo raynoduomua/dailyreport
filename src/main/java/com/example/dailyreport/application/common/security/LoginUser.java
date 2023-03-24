@@ -43,7 +43,7 @@ public class LoginUser implements UserDetails {
 		switch (this.account.getRole()) {
 		// admin
 		case 1:
-			return AuthorityUtils.createAuthorityList("ADMIN", "TEACHER", "CLIENT", "STUDENT");
+			return AuthorityUtils.createAuthorityList("ADMIN");
 		// main講師
 		// sub講師
 		case 2:

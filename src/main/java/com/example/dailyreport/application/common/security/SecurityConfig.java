@@ -31,6 +31,7 @@ public class SecurityConfig {
 				.mvcMatchers("/dailyreport/loginForm").permitAll()
 				.mvcMatchers("/admin/**").hasAnyAuthority("ADMIN")
 				.mvcMatchers("/teacher/**").hasAnyAuthority("TEACHER")
+				.mvcMatchers("/client/**").hasAnyAuthority("CLIENT")
 				.mvcMatchers("/student/**").hasAnyAuthority("STUDENT")
 				.anyRequest().authenticated())
 				.formLogin(login -> login

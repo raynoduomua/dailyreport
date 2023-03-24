@@ -1,4 +1,4 @@
-package com.example.dailyreport.application.controller.teacher;
+package com.example.dailyreport.application.controller.client;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,18 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/teacher")
-public class TeacherController {
+@RequestMapping("/client")
+public class ClientController {
 
 	private final CommonService commonService;
 	private final TeacherService teacherService;
 
-	/**
-	 * 講師Home画面表示
-	 * @param model     formクラス
-	 * @param loginUser ログイン中のユーザ情報
-	 * @return          講師Home画面
-	 */
 	@GetMapping("/home")
 	public String viewHome(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 
@@ -48,7 +42,7 @@ public class TeacherController {
 
 		}
 
-		return "teacher/home";
+		return "client/home";
 	}
 
 }

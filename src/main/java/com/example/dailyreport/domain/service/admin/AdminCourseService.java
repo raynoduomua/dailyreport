@@ -65,4 +65,13 @@ public class AdminCourseService {
 		});
 	}
 
+	/**
+	 * 講座数取得
+	 * @return 講座数
+	 */
+	public Integer countCourse() {
+
+		return (int) this.adminCourseRepository.count();
+	}
+
 }

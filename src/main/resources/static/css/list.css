@@ -42,3 +42,11 @@
 .list-teach{
 	width: 160px;
 }
+
+.admin-list-course{
+	width: 280px;
+}
+
+.admin-list-td{
+	text-align: right;
+}

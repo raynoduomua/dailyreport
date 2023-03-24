@@ -95,14 +95,4 @@ public class AdminAccountService {
 		return this.adminAccountRepository.findByCourseNameIdAndRole(loginUser.getUser().getCourseNameId(), 5);
 	}
 
-	/**
-	 * 該当の権限のレコード数
-	 * @param role 権限
-	 * @return     レコード数
-	 */
-	public Integer countByRole(Integer role) {
-
-		return this.adminAccountRepository.countByRole(role);
-	}
-
 }

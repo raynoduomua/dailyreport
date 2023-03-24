@@ -21,4 +21,6 @@ public interface TeacherDailyReportRepository extends JpaRepository<TeacherDaily
 
 	Optional<TeacherDailyReport> findByCourseIdAndClassDate(Integer courseId, LocalDate classDate);
 
+	long countByCourseIdAndClassDate(Integer courseId, LocalDate classDate);
+
 }

@@ -12,4 +12,6 @@ public interface AdminCourseRepository extends JpaRepository<Course, Integer> {
 
 	List<Course> findByCourseName(String courseName);
 
+	public long count();
+
 }

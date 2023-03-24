@@ -91,46 +91,48 @@
 							</a>
 						</li>
 						
-						<!-- 講師日報作成(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 講師_日報作成(TEACHER) -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								講師_日報作成
 							</a>
 						</li>
-						<!-- 講師日報編集(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 講師_日報編集(TEACHER) -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								日報編集_本日分
 							</a>
 						</li>
-						<!-- 講師週報作成(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 講師_週報作成(TEACHER) -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								講師_週報作成
 							</a>
 						</li>
-						<!-- 講師週報編集(TEACHER) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 講師_週報編集(TEACHER) -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								週報編集_今週分
 							</a>
 						</li>
-						<!-- 受講生単元テスト点数入力（TEACHER） -->
+						<!-- 講師_受講生単元テスト点数入力（TEACHER） -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/teacher/create-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
 								講師_単元テスト<br>　　点数入力
 							</a>
 						</li>
-						<!-- 受講生単元テスト編集（TEACHER） -->
+						<!--<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">-->
+						<!-- 講師_受講生単元テスト編集（TEACHER） -->
 						<li class="nav-item">
 							<a th:href="@{/teacher/edit-mini-exam}" class="nav-link text-white">
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
@@ -138,16 +140,16 @@
 							</a>
 						</li>
 						
-						<!-- 受講生日報作成(STUDENT) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 受講生_日報作成(STUDENT) -->
+						<!--<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/student/create-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
 								受講生_日報作成
 							</a>
 						</li>
-						<!-- 受講生日報編集(STUDENT) -->
-						<!--<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">-->
+						<!-- 受講生_日報編集(STUDENT) -->
+						<!--<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">-->
 						<li class="nav-item">
 							<a th:href="@{/student/edit-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>

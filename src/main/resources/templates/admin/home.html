@@ -38,15 +38,43 @@
 								</tr>
 							</table>
 
-							<!-- メッセージ 
-							<div th:replace="~{fragments/message :: student}">
-							</div>-->
 						</div>
 
 						<div class="card-body table-responsive">
-						
-						<input type="date">
-
+							<h4 th:text="#{student.report}"></h4>
+							<table class="tbl-list">
+								<tr>
+									<th th:text="#{coursename}" class="admin-list-course"></th>
+									<th th:text="#{count.student.report.minusdays}" class="admin-list-course"></th>
+									<th th:text="#{count.student.report.today}" class="admin-list-course"></th>
+									<th th:text="#{count.student.course}" class="admin-list-course"></th>
+								</tr>
+								<th:block th:each="item : ${courseStudentMap}">
+									<tr>
+										<td th:text="${item.getKey()}"></td>
+										<th:block th:each="count : ${item.getValue()}">
+											<td th:text="${count}" class="admin-list-td"></td>
+										</th:block>
+									</tr>
+								</th:block>
+							</table>
+							
+							<h4 class="mt-3" th:text="#{teacher.daily.report}"></h4>
+							<table class="tbl-list">
+								<tr>
+									<th th:text="#{coursename}" class="admin-list-course"></th>
+									<th th:text="#{count.teacher.daily.report.minusdays}" class="admin-list-course"></th>
+									<th th:text="#{count.teacher.daily.report.today}" class="admin-list-course"></th>
+								</tr>
+								<th:block th:each="item : ${courseTeacherDailyReportMap}">
+									<tr>
+										<td th:text="${item.getKey()}"></td>
+										<th:block th:each="count : ${item.getValue()}">
+											<td th:text="${count}" class="admin-list-td"></td>
+										</th:block>
+									</tr>
+								</th:block>
+							</table>
 						</div>
 					</div>
 				</div>

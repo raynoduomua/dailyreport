@@ -11,4 +11,6 @@ public interface AccountAndStudentsReportsMapper {
 
 	List<AccountAndStudentsReports> findStudentReports(AccountAndStudentsReports reports);
 
+	List<AccountAndStudentsReports> serchStudentReports(AccountAndStudentsReports reports);
+
 }

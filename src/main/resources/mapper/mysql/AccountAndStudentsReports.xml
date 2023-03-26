@@ -52,4 +52,35 @@
 			sr.STUDENTS_DATE = #{studentsDate}
 		;
 	</select>
+	
+	<select id="serchStudentReports" resultMap="reports">
+		SELECT
+			sr.ID,
+			sr.STUDENTS_DATE,
+			a.NAME,
+			sr.LEARNING_CONTENTS,
+			sr.UNDERSTANDING,
+			sr.UNDERSTANDING_DETAIL,
+			sr.TEACHER_SUPPORT,
+			sr.QUESTION
+		FROM
+			accounts a
+		inner JOIN
+			studentsreports sr
+		on
+			a.ID = sr.USER_ID
+		<where>
+			<if test="role != null">
+				a.ROLE = #{role}
+			</if>
+			
+		</where>
+		<!-- 
+		where
+			a.COURSE_NAME_ID = #{courseNameId}
+		and
+			sr.STUDENTS_DATE = #{studentsDate}
+			 -->
+		;
+	</select>
 </mapper>

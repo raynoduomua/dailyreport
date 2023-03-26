@@ -9,9 +9,9 @@ public class AccountAndStudentsReports {
 
 	private Integer id;
 
-	private String name;
+	private LocalDate studentsDate;
 
-	private Integer courseNameId;
+	private String name;
 
 	private String learningContents;
 
@@ -23,6 +23,14 @@ public class AccountAndStudentsReports {
 
 	private String question;
 
-	private LocalDate studentsDate;
+	private Integer clientNameId;
+
+	private Integer courseNameId;
+
+	private Integer role;
+
+	private LocalDate fromDate;
+
+	private LocalDate toDate;
 
 }

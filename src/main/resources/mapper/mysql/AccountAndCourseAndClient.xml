@@ -48,9 +48,15 @@
 		on
 			a.COURSE_NAME_ID = co.ID
 		<where>
-        	<if test="serch.id != null">
-        		a.ID = #{serch.id}
+        	<if test="id != null">
+        		a.ID = #{id}
         	</if>
+        	<if test="role != null">
+				AND a.ROLE = #{role}
+			</if>
+        	<if test="courseNameId != null">
+				AND a.COURSE_NAME_ID = #{courseNameId}
+			</if>
         </where>
 		;
 	</select>

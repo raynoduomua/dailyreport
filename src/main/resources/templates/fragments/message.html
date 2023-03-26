@@ -145,6 +145,13 @@
 		</div>
 	</div>
 	
+	<!-- 共通機能 -->
+	<div th:fragment="common">
+		<div class="alert alert-danger ms" th:if="${param.errordate}">
+			<small th:text="#{student.report.search.date.error.ms}"></small>
+		</div>
+	</div>
+	
 	<!-- エラーメッセージ(404 Not Foundなど) -->
 	<div th:fragment="error">
 		<div class="text-center">

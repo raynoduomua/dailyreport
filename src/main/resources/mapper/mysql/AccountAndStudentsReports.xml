@@ -53,7 +53,7 @@
 		;
 	</select>
 	
-	<select id="serchStudentReports" resultMap="reports">
+	<select id="searchStudentReports" resultMap="reports">
 		SELECT
 			sr.ID,
 			sr.STUDENTS_DATE,
@@ -70,17 +70,28 @@
 		on
 			a.ID = sr.USER_ID
 		<where>
-			<if test="role != null">
-				a.ROLE = #{role}
+			<if test="courseNameId != null">
+				a.CLIENT_NAME_ID = #{courseNameId}
 			</if>
-			
+			<if test="clientNameId != null">
+				AND a.COURSE_NAME_ID = #{clientNameId}
+			</if>
+			<if test="id != null">
+				AND a.ID = #{id}
+			</if>
+			<if test="understanding != null">
+				AND sr.UNDERSTANDING = #{understanding}
+			</if>
+			<if test="teacherSupport != null">
+				AND sr.TEACHER_SUPPORT = #{teacherSupport}
+			</if>
+			<if test="fromDate != null">
+				AND sr.STUDENTS_DATE >= #{fromDate}
+			</if>
+			<if test="toDate != null">
+				AND sr.STUDENTS_DATE <![CDATA[ <= ]]> #{toDate}
+			</if>
 		</where>
-		<!-- 
-		where
-			a.COURSE_NAME_ID = #{courseNameId}
-		and
-			sr.STUDENTS_DATE = #{studentsDate}
-			 -->
 		;
 	</select>
 </mapper>

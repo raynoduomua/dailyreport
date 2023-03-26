@@ -9,6 +9,7 @@ import com.example.dailyreport.application.form_validation.PastStudentDailyRepor
 import com.example.dailyreport.infrastructure.dto.AccountAndCourseAndClient;
 import com.example.dailyreport.infrastructure.dto.AccountAndStudentsReports;
 import com.example.dailyreport.infrastructure.mapper.AccountAndCourseAndClientMapper;
+import com.example.dailyreport.infrastructure.mapper.AccountAndStudentsReportsMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class StudentReportPastService {
 
 	private final AccountAndCourseAndClientMapper accountAndCourseAndClientMapper;
+	private final AccountAndStudentsReportsMapper accountAndStudentsReportsMapper;
 
 	/**
 	 * アカウント一覧取得
@@ -41,9 +43,34 @@ public class StudentReportPastService {
 		return accountAndCourseAndClientMapper.findAllAccount(account);
 	}
 
-	public void pastStudentDailyReport(PastStudentDailyReportForm pastStudentDailyReportForm) {
+	public List<AccountAndStudentsReports> pastStudentDailyReport(
+			PastStudentDailyReportForm pastStudentDailyReportForm) {
 
 		AccountAndStudentsReports reports = new AccountAndStudentsReports();
 
+		if (pastStudentDailyReportForm.getCourseNameId() != null) {
+			reports.setCourseNameId(pastStudentDailyReportForm.getCourseNameId());
+		}
+		if (pastStudentDailyReportForm.getClientNameId() != null) {
+			reports.setClientNameId(pastStudentDailyReportForm.getClientNameId());
+		}
+		if (pastStudentDailyReportForm.getId() != null) {
+			reports.setId(pastStudentDailyReportForm.getId());
+		}
+		if (pastStudentDailyReportForm.getUnderstanding() != null) {
+			reports.setUnderstanding(pastStudentDailyReportForm.getUnderstanding());
+		}
+		if (pastStudentDailyReportForm.getTeacherSupport() != null) {
+			reports.setTeacherSupport(pastStudentDailyReportForm.getTeacherSupport());
+		}
+		if (pastStudentDailyReportForm.getFromDate() != null) {
+			reports.setFromDate(pastStudentDailyReportForm.getFromDate());
+		}
+		if (pastStudentDailyReportForm.getToDate() != null) {
+			reports.setToDate(pastStudentDailyReportForm.getToDate());
+		}
+
+		return this.accountAndStudentsReportsMapper.searchStudentReports(reports);
 	}
+
 }

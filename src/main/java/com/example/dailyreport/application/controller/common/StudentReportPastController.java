@@ -96,7 +96,7 @@ public class StudentReportPastController {
 		}
 		// 受講生日報
 		model.addAttribute("studentreports",
-				this.studentReportPastService.pastStudentDailyReport(pastStudentDailyReportForm));
+				this.studentReportPastService.pastStudentDailyReport(loginUser, pastStudentDailyReportForm));
 
 		return "common/past/studentdailyreport";
 	}

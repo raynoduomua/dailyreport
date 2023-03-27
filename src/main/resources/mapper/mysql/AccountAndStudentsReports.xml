@@ -71,10 +71,10 @@
 			a.ID = sr.USER_ID
 		<where>
 			<if test="courseNameId != null">
-				a.CLIENT_NAME_ID = #{courseNameId}
+				a.COURSE_NAME_ID = #{courseNameId}
 			</if>
 			<if test="clientNameId != null">
-				AND a.COURSE_NAME_ID = #{clientNameId}
+				AND a.CLIENT_NAME_ID = #{clientNameId}
 			</if>
 			<if test="id != null">
 				AND a.ID = #{id}

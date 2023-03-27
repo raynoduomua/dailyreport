@@ -102,6 +102,28 @@
 			<scope>test</scope>
 		</dependency>
 		
+        <!-- DataTables -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables</artifactId>
+			<version>1.11.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables-plugins</artifactId>
+			<version>1.11.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables-buttons</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jszip</artifactId>
+			<version>3.7.1</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

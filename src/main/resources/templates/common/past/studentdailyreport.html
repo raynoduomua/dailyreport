@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+	layout:decorate="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8" th:remove="tag">
@@ -61,7 +61,7 @@
 									<td th:text="${today}"></td>
 								</tr>
 							</table>
-							
+
 							<!-- メッセージ -->
 							<div th:replace="~{fragments/message :: common}">
 							</div>
@@ -211,7 +211,7 @@
 						</div>
 
 						<div class="card-body table-responsive">
-							<table id="user-table" class="table table-bordered tbl-list">
+							<table id="table-csv" class="table table-bordered tbl-list">
 								<thead>
 									<tr>
 										<th class="list-date" th:text="#{student.date}"></th>

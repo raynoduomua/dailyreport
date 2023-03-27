@@ -43,7 +43,7 @@ public class StudentReportPastService {
 		return accountAndCourseAndClientMapper.findAllAccount(account);
 	}
 
-	public List<AccountAndStudentsReports> pastStudentDailyReport(
+	public List<AccountAndStudentsReports> pastStudentDailyReport(LoginUser loginUser,
 			PastStudentDailyReportForm pastStudentDailyReportForm) {
 
 		AccountAndStudentsReports reports = new AccountAndStudentsReports();
@@ -68,6 +68,13 @@ public class StudentReportPastService {
 		}
 		if (pastStudentDailyReportForm.getToDate() != null) {
 			reports.setToDate(pastStudentDailyReportForm.getToDate());
+		}
+
+		if (loginUser.getUser().getRole() != 1) {
+			reports.setCourseNameId(loginUser.getUser().getCourseNameId());
+		}
+		if (loginUser.getUser().getRole() == 5) {
+			reports.setId(loginUser.getUser().getId());
 		}
 
 		return this.accountAndStudentsReportsMapper.searchStudentReports(reports);

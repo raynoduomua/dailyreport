@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" th:remove="tag">
+	<link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+
+<body>
+
+	<!-- サイドバーの表示 -->
+	<div layout:fragment="sidebar" th:replace="~{fragments/sidebar :: sidebar}">
+	</div>
+
+	<!-- コンテンツの表示 -->
+	<main layout:fragment="content" class="offcanvas-outside bg-light">
+		<div class="container-fluid">
+			<!-- トグルボタン -->
+			<div th:replace="~{fragments/sidebar :: toggler}">
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="card shadow mt-3">
+
+						<div class="card-header">
+							<h3 class="text-center text-navy my-3" th:text="#{past.teacher.daily.report}"></h3>
+
+							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
+								<tr>
+									<th th:text="#{name}"></th>
+									<td th:text="${account.name}"></td>
+								</tr>
+								<th:block th:switch="${account.role}">
+									<th:block th:case=2>
+										<tr>
+											<th th:text="#{coursename}"></th>
+											<td th:text="${account.courseName}"></td>
+										</tr>
+									</th:block>
+									<th:block th:case=3>
+										<tr>
+											<th th:text="#{coursename}"></th>
+											<td th:text="${account.courseName}"></td>
+										</tr>
+									</th:block>
+								</th:block>
+								<tr>
+									<th th:text="#{student.date.today}"></th>
+									<td th:text="${today}"></td>
+								</tr>
+							</table>
+
+							<!-- メッセージ -->
+							<div th:replace="~{fragments/message :: common}">
+							</div>
+
+						</div>
+
+						<div class="card-body">
+							<form th:action="@{/past/teacher-daily-report}" method="post"
+								th:object="${pastTeacherDailyReportForm}" autocomplete="off">
+								<table class="tbl-list">
+									<tr>
+										<th:block sec:authorize="hasAuthority('ADMIN')">
+											<th th:text="#{coursename}" class="admin-list-course"></th>
+										</th:block>
+										<th th:text="#{date.from}" class="admin-list-course"></th>
+										<th th:text="#{date.to}" class="admin-list-course"></th>
+										<th></th>
+									</tr>
+									<tr>
+										<th:block sec:authorize="hasAuthority('ADMIN')">
+											<td>
+												<!-- course -->
+												<div class="form-group mt-2">
+													<select id="courseNameId" name="courseNameId" class="form-select">
+														<option></option>
+														<option th:each="course : ${courses}" th:value="${course.id}"
+															th:text="${course.courseName}"
+															th:selected="${course.id} == *{courseNameId}"
+															th:field="*{courseNameId}" th:errorclass="is-invalid">
+														</option>
+													</select>
+													<div class="text-danger"
+														th:if="${#fields.hasErrors('courseNameId')}"
+														th:errors="*{courseNameId}">
+													</div>
+												</div>
+											</td>
+										</th:block>
+										<td>
+											<!-- FromDate -->
+											<div class="form-group mt-2">
+												<input type="date" class="form-control" th:errorclass="is-invalid"
+													th:field="*{fromDate}">
+												<div class="invalid-feedback" th:errors="*{fromDate}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<!-- ToDate -->
+											<div class="form-group mt-2">
+												<input type="date" class="form-control" th:errorclass="is-invalid"
+													th:field="*{toDate}">
+												<div class="invalid-feedback" th:errors="*{toDate}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<button class="btn btn-navy form-btn" type="submit"
+												th:text="#{search}"></button>
+										</td>
+									</tr>
+								</table>
+							</form>
+						</div>
+
+						<div class="card-body table-responsive">
+							<table id="table-csv" class="table table-bordered tbl-list">
+								<thead>
+									<tr>
+										<th class="list-date" th:text="#{student.date}"></th>
+										<th class="admin-list-course" th:text="#{coursename}"></th>
+										<th th:text="#{teacher.daily.report}"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="report : ${teacherreports}">
+										<td th:text="${report.classDate}"></td>
+										<td th:text="${report.courseName}"></td>
+										<td th:text="${report.dailyReports}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

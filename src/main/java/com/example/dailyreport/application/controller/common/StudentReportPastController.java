@@ -19,12 +19,10 @@ import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.common.StudentReportPastService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/past")
-@Slf4j
 public class StudentReportPastController {
 
 	private final CommonService commonService;
@@ -71,8 +69,6 @@ public class StudentReportPastController {
 	@PostMapping("/student-daily-report")
 	public String pastStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("pastStudentDailyReportForm") PastStudentDailyReportForm pastStudentDailyReportForm) {
-
-		log.info("pastStudentDailyReportForm: {}", pastStudentDailyReportForm);
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", this.commonService.viewAccountOneList(loginUser));

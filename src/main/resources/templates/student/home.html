@@ -63,8 +63,6 @@
 										<th class="list-textarea" th:text="#{understandingDetail}"></th>
 										<th class="list-teach" th:text="#{teacherSupport}"></th>
 										<th class="list-textarea" th:text="#{question}"></th>
-										<th class="list-date" th:text="#{registration.date}"></th>
-										<th class="list-date" th:text="#{update.date}"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -87,8 +85,6 @@
 											<td th:case=1 th:text="#{teach1}"></td>
 										</th:block>
 										<td th:text="${report.question}"></td>
-										<td th:text="${report.createdAt}"></td>
-										<td th:text="${report.updatedAt}"></td>
 									</tr>
 								</tbody>
 							</table>

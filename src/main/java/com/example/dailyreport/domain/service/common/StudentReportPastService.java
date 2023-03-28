@@ -43,6 +43,12 @@ public class StudentReportPastService {
 		return accountAndCourseAndClientMapper.findAllAccount(account);
 	}
 
+	/**
+	 * 受講生過去日報過去検索処理
+	 * @param loginUser                  ログイン中のユーザ情報
+	 * @param pastStudentDailyReportForm Formクラス
+	 * @return                           受講生日報過去
+	 */
 	public List<AccountAndStudentsReports> pastStudentDailyReport(LoginUser loginUser,
 			PastStudentDailyReportForm pastStudentDailyReportForm) {
 
@@ -70,11 +76,20 @@ public class StudentReportPastService {
 			reports.setToDate(pastStudentDailyReportForm.getToDate());
 		}
 
-		if (loginUser.getUser().getRole() != 1) {
+		switch (loginUser.getUser().getRole()) {
+		case 1:
+			break;
+		case 2:
+		case 3:
 			reports.setCourseNameId(loginUser.getUser().getCourseNameId());
-		}
-		if (loginUser.getUser().getRole() == 5) {
+			break;
+		case 4:
+			reports.setClientNameId(loginUser.getUser().getClientNameId());
+			break;
+		case 5:
+			reports.setCourseNameId(loginUser.getUser().getCourseNameId());
 			reports.setId(loginUser.getUser().getId());
+			break;
 		}
 
 		return this.accountAndStudentsReportsMapper.searchStudentReports(reports);

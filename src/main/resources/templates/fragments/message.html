@@ -133,12 +133,8 @@
 		<div class="alert alert-success ms" th:if="${param.save}">
 			<small th:text="#{student.report.save.ms}"></small>
 		</div>
-		<div class="alert alert-danger ms" th:if="${param.saveerror}">
-			<small th:text="#{student.report.saveerror.ms}"></small>
-		</div>
-		<div class="alert alert-danger ms" th:if="${param.editerror}">
-			<small th:text="#{student.report.editerror1.ms}"></small><br>
-			<small th:text="#{student.report.editerror2.ms}"></small>
+		<div class="alert alert-danger ms" th:if="${param.searcherror}">
+			<small th:text="#{student.report.searcherror.ms}"></small><br>
 		</div>
 		<div class="alert alert-success ms" th:if="${param.update}">
 			<small th:text="#{student.report.update.ms}"></small>

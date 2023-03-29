@@ -15,6 +15,7 @@ import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.common.utils.TeacherSupport;
 import com.example.dailyreport.application.common.utils.UnderStand;
 import com.example.dailyreport.application.form_validation.GroupOrder;
+import com.example.dailyreport.application.form_validation.SearchDateForm;
 import com.example.dailyreport.application.form_validation.StudentCreateReportForm;
 import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.student.StudentReportService;
@@ -32,12 +33,15 @@ public class StudentReportController {
 	/**
 	 * 受講生日報作成画面表示
 	 * @param model                   Modelクラス
+	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm Formクラス
+	 * @param searchDateForm          Formクラス
 	 * @return                        受講生日報作成画面
 	 */
 	@GetMapping("/create-report")
 	public String viewCreateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
+			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
+			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm) {
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
@@ -52,56 +56,29 @@ public class StudentReportController {
 	}
 
 	/**
-	 * 受講生日報登録処理
+	 * 受講生日報検索後画面表示
 	 * @param model                   Modelクラス
 	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm Formクラス
+	 * @param searchDateForm          Formクラス
 	 * @param bindingResult           バリデーションチェック
-	 * @return                        存在しない：受講生Home画面
-	 *                                存在する　：受講生日報作成画面
+	 * @return                        受講生日報検索後画面
 	 */
-	@PostMapping("/save-report")
-	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@Validated(GroupOrder.class) @ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
+	@PostMapping("/search-report")
+	public String searchStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
+			@Validated(GroupOrder.class) @ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
-			return viewCreateStudentDailyReport(model, loginUser, studentCreateReportForm);
+			return this.viewCreateStudentDailyReport(model, loginUser, studentCreateReportForm, searchDateForm);
 		}
 
-		// 本日の受講生日報存在check
-		if (this.studentReportService.existsByStudentsDate(loginUser) == false) {
+		if (searchDateForm.getStudentsDate().isAfter(LocalDateNow.getLocalDateNow())) {
 
-			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
-
-			return "redirect:/student/home?save";
-		} else {
-
-			return "redirect:/student/create-report?saveerror";
+			return "redirect:/student/create-report?searcherror";
 		}
-
-	}
-
-	/**
-	 * 受講生日報編集画面
-	 * @param model                   Modelクラス
-	 * @param loginUser               ログイン中のユーザ情報
-	 * @param studentCreateReportForm Formクラス
-	 * @return                        存在しない：受講生日報作成画面
-	 *                                存在する　：受講生日報編集画面
-	 */
-	@GetMapping("/edit-report")
-	public String viewUpdateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
-
-		if (this.studentReportService.existsByStudentsDate(loginUser) == false) {
-
-			return "redirect:/student/create-report?editerror";
-		}
-
-		studentCreateReportForm = this.studentReportService.viewUpdateStudentDailyReport(loginUser,
-				studentCreateReportForm);
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
@@ -112,30 +89,45 @@ public class StudentReportController {
 		// 講師対応
 		model.addAttribute("teacherMap", TeacherSupport.selectTeacherSupportMap());
 
-		return "student/report/updatedailyreport";
+		studentCreateReportForm = this.studentReportService.searchStudentDailyReport(loginUser,
+				studentCreateReportForm);
+
+		return "student/report/createdailyreport";
 	}
 
 	/**
-	 * 受講生日報更新処理
+	 * 受講生日報登録・更新処理
 	 * @param model                   Modelクラス
 	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm Formクラス
 	 * @param bindingResult           バリデーションチェック
-	 * @return                        受講生Home画面
+	 * @return                        存在しない：受講生Home画面
+	 *                                存在する　：受講生日報作成画面
 	 */
-	@PostMapping("/update-report")
-	public String updateStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+	@PostMapping("/save-report")
+	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
 			@Validated(GroupOrder.class) @ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
-			return this.viewUpdateStudentDailyReport(model, loginUser, studentCreateReportForm);
+			return this.searchStudentDailyReport(model, loginUser, studentCreateReportForm, searchDateForm,
+					bindingResult);
 		}
 
-		this.studentReportService.updateStudentDailyReport(loginUser, studentCreateReportForm);
+		// 本日の受講生日報存在check
+		if (this.studentReportService.existsByStudentsDate(loginUser, studentCreateReportForm) == false) {
 
-		return "redirect:/student/home?update";
+			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
+
+			return "redirect:/student/home?save";
+		} else {
+
+			this.studentReportService.updateStudentDailyReport(loginUser, studentCreateReportForm);
+
+			return "redirect:/student/home?update";
+		}
 	}
 
 }

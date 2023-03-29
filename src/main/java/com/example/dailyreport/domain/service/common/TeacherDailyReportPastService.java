@@ -17,6 +17,12 @@ public class TeacherDailyReportPastService {
 
 	private final AccountAndTeachersDailyReportsMapper acouAccountAndTeachersDailyReportsMapper;
 
+	/**
+	 * 講師日報一覧
+	 * @param loginUser                  ログイン中のユーザ情報
+	 * @param pastTeacherDailyReportForm Formクラス
+	 * @return                           講師日報一覧
+	 */
 	public List<AccountAndTeachersDailyReports> pastTeacherDailyReport(LoginUser loginUser,
 			PastTeacherDailyReportForm pastTeacherDailyReportForm) {
 

@@ -26,6 +26,13 @@ public class TeacherDailyReportPastController {
 	private final AdminCourseService adminCourseService;
 	private final TeacherDailyReportPastService teacherDailyReportPastService;
 
+	/**
+	 * 講師日報過去検索画面表示
+	 * @param model                      Modelクラス
+	 * @param loginUser                  ログイン中のユーザ情報
+	 * @param pastTeacherDailyReportForm Formクラス
+	 * @return                           講師日報過去検索画面
+	 */
 	@GetMapping("/teacher-daily-report")
 	public String viewPastTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("pastTeacherDailyReportForm") PastTeacherDailyReportForm pastTeacherDailyReportForm) {
@@ -40,6 +47,13 @@ public class TeacherDailyReportPastController {
 		return "common/past/teacherdailyreport";
 	}
 
+	/**
+	 * 講師日報過去検索後画面表示
+	 * @param model                      Modelクラス
+	 * @param loginUser                  ログイン中のユーザ情報
+	 * @param pastTeacherDailyReportForm Formクラス
+	 * @return                           講師日報過去検索画面
+	 */
 	@PostMapping("/teacher-daily-report")
 	public String pastTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("pastTeacherDailyReportForm") PastTeacherDailyReportForm pastTeacherDailyReportForm) {
@@ -50,6 +64,13 @@ public class TeacherDailyReportPastController {
 		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 		// 講座名一覧
 		model.addAttribute("courses", this.adminCourseService.viewCourseList());
+
+		if (pastTeacherDailyReportForm.getFromDate() != null && pastTeacherDailyReportForm.getToDate() != null
+				&& !(pastTeacherDailyReportForm.getFromDate().isBefore(pastTeacherDailyReportForm.getToDate()))) {
+
+			return "redirect:/past/teacher-daily-report?errordate";
+		}
+
 		// 講師日報
 		model.addAttribute("teacherreports",
 				this.teacherDailyReportPastService.pastTeacherDailyReport(loginUser, pastTeacherDailyReportForm));

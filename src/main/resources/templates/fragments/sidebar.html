@@ -97,7 +97,7 @@
 							<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_日報作成
+								講師日報_作成
 							</a>
 						</li>
 						<!-- 講師_日報編集(TEACHER) -->
@@ -105,7 +105,7 @@
 							<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_日報編集<br>　　本日分
+								講師日報_編集<br>　　本日分
 							</a>
 						</li>
 						<!-- 講師_週報作成(TEACHER) -->
@@ -113,7 +113,7 @@
 							<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_週報作成
+								講師週報_作成
 							</a>
 						</li>
 						<!-- 講師_週報編集(TEACHER) -->
@@ -121,7 +121,7 @@
 							<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/edit-weekly-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_週報編集<br>　　今週分
+								講師週報_編集<br>　　今週分
 							</a>
 						</li>
 						<!-- 講師_受講生単元テスト点数入力（TEACHER） -->
@@ -146,15 +146,7 @@
 							<!--<li class="nav-item">-->
 							<a th:href="@{/student/create-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								受講生_日報作成
-							</a>
-						</li>
-						<!-- 受講生_日報編集(STUDENT) -->
-						<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">
-							<!--<li class="nav-item">-->
-							<a th:href="@{/student/edit-report}" class="nav-link text-white">
-								<i class="bi bi-people-fill me-2"></i>
-								受講生_日報編集<br>　　本日分
+								受講生日報<br>　　作成・編集・更新
 							</a>
 						</li>
 
@@ -162,15 +154,23 @@
 						<li class="nav-item">
 							<a th:href="@{/past/student-daily-report}" class="nav-link text-white">
 								<i class="bi bi-box-arrow-right me-2"></i>
-								受講生_日報<br>　　過去検索
+								受講生日報<br>　　過去検索
 							</a>
 						</li>
 
-						<!-- 講師日報過去検索画面(TEACHER) -->
+						<!-- 講師日報過去検索画面(ADMIN,TEACHER) -->
 						<li sec:authorize="hasAuthority('ADMIN') or hasAuthority('TEACHER')" class="nav-item">
 							<a th:href="@{/past/teacher-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師_日報<br>　　過去検索
+								講師日報<br>　　過去検索
+							</a>
+						</li>
+						
+						<!-- 講師週報過去検索画面(ADMIN,TEACHER,CLIENT) -->
+						<li sec:authorize="hasAuthority('ADMIN') or hasAuthority('TEACHER') or hasAuthority('CLIENT')" class="nav-item">
+							<a th:href="@{/past/teacher-weekly-report}" class="nav-link text-white">
+								<i class="bi bi-people-fill me-2"></i>
+								講師週報<br>　　過去検索
 							</a>
 						</li>
 

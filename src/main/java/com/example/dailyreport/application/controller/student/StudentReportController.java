@@ -101,8 +101,8 @@ public class StudentReportController {
 	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm Formクラス
 	 * @param bindingResult           バリデーションチェック
-	 * @return                        存在しない：受講生Home画面
-	 *                                存在する　：受講生日報作成画面
+	 * @return                        false：登録
+	 *                                true ：更新
 	 */
 	@PostMapping("/save-report")
 	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
@@ -116,7 +116,7 @@ public class StudentReportController {
 					bindingResult);
 		}
 
-		// 本日の受講生日報存在check
+		// 該当日の受講生日報存在check
 		if (this.studentReportService.existsByStudentsDate(loginUser, studentCreateReportForm) == false) {
 
 			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);

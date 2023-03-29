@@ -57,7 +57,7 @@
 								<input type="hidden" name="id" th:field="*{id}" />
 								
 								<!-- student -->
-								<div class="form-group">
+								<div class="form-group mb-3">
 									<p class="form-label" th:text="#{student.name}"></p>
 									<select id="userId" name="userId" class="form-select form-select-student" disabled>
 										<option th:each="student : ${students}" th:value="${student.id}"
@@ -72,7 +72,7 @@
 								</div>
 								
 								<!-- miniexamName -->
-								<div class="form-group">
+								<div class="form-group mb-3">
 									<p class="form-label" th:text="#{miniexamName}"></p>
 									<select id="testId" name="testId" class="form-select form-select-student" disabled>
 										<option th:each="miniexam : ${miniexams}" th:value="${miniexam.id}"
@@ -87,7 +87,7 @@
 								</div>
 
 								<!-- date -->
-								<div class="form-group mt-2">
+								<div class="form-group mb-3">
 									<label for="testDate" class="form-label" th:text="#{testDate}"></label>
 									<input type="date" class="form-control" th:errorclass="is-invalid" th:field="*{testDate}" disabled>
 									<div class="invalid-feedback" th:errors="*{testDate}">
@@ -96,7 +96,7 @@
 								</div>
 
 								<!-- score -->
-								<div class="form-group mt-2">
+								<div class="form-group mb-3">
 									<label for="score" class="form-label" th:text="#{score}"></label>
 									<input class="form-control" type="text" th:errorclass="is-invalid"
 										th:field="*{score}">
@@ -105,7 +105,7 @@
 								</div>
 
 								<!-- scoreAverage -->
-								<div class="form-group mt-2">
+								<div class="form-group mb-3">
 									<label for="scoreAverage" class="form-label" th:text="#{scoreAverage}"></label>
 									<input class="form-control" type="text" th:errorclass="is-invalid"
 										th:field="*{scoreAverage}">
@@ -113,7 +113,7 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{update}"></button>
+								<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{update}"></button>
 							</form>
 						</div>
 					</div>

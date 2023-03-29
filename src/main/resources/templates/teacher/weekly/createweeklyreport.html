@@ -58,7 +58,7 @@
 								th:object="${teacherWeeklyReportForm}" autocomplete="off">
 								
 								<!-- student -->
-								<div class="form-group">
+								<div class="form-group mb-3">
 									<p class="form-label" th:text="#{student.name}"></p>
 									<select id="userId" name="userId" class="form-select form-select-student">
 										<option></option>
@@ -73,7 +73,7 @@
 								</div>
 
 								<!-- weeklyReports -->
-								<div class="form-group mt-3">
+								<div class="form-group mb-3">
 									<label for="weeklyReports" class="form-label"
 										th:text="#{weeklyReports}"></label>
 									<textarea th:field="*{weeklyReports}" rows="5" cols="137" class="form-textarea"
@@ -82,7 +82,7 @@
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{insert}"></button>
 							</form>
 
 						</div>

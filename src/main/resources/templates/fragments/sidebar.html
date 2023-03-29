@@ -92,20 +92,12 @@
 							</a>
 						</li>
 
-						<!-- 講師_日報作成(TEACHER) -->
+						<!-- 講師日報_作成・編集・更新(TEACHER) -->
 						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
 							<!--<li class="nav-item">-->
 							<a th:href="@{/teacher/create-daily-report}" class="nav-link text-white">
 								<i class="bi bi-people-fill me-2"></i>
-								講師日報_作成
-							</a>
-						</li>
-						<!-- 講師_日報編集(TEACHER) -->
-						<li sec:authorize="hasAuthority('TEACHER')" class="nav-item">
-							<!--<li class="nav-item">-->
-							<a th:href="@{/teacher/edit-daily-report}" class="nav-link text-white">
-								<i class="bi bi-people-fill me-2"></i>
-								講師日報_編集<br>　　本日分
+								講師日報<br>　　作成・編集・更新
 							</a>
 						</li>
 						<!-- 講師_週報作成(TEACHER) -->
@@ -141,7 +133,7 @@
 							</a>
 						</li>
 
-						<!-- 受講生_日報作成(STUDENT) -->
+						<!-- 受講生日報_作成・編集・更新(STUDENT) -->
 						<li sec:authorize="hasAuthority('STUDENT')" class="nav-item">
 							<!--<li class="nav-item">-->
 							<a th:href="@{/student/create-report}" class="nav-link text-white">

@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8" th:remove="tag">
 	<link rel="stylesheet" th:href="@{/css/teacher/report.css}">
+	<link rel="stylesheet" th:href="@{/css/list.css}">
 </head>
 
 <body>
@@ -50,20 +51,57 @@
 
 						<div class="card-body form-card-body-report">
 
+							<form th:action="@{/teacher/search-report}" method="post" th:object="${searchDateForm}"
+								autocomplete="off">
+								<table>
+									<tr>
+										<td class="admin-list-course">
+											<!-- studentsDate -->
+											<div class="form-group">
+												<input type="date" class="form-control" th:errorclass="is-invalid"
+													th:field="*{studentsDate}">
+												<div class="invalid-feedback" th:errors="*{studentsDate}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<button class="btn btn-navy form-btn" type="submit"
+												th:text="#{search}"></button>
+										</td>
+									</tr>
+								</table>
+							</form>
+						</div>
+
+						<div class="card-body form-card-body-report">
+
 							<form th:action="@{/teacher/save-daily-report}" method="post"
 								th:object="${teacherDailyReportForm}" autocomplete="off">
+								<th:block th:if="${teacherDailyReportForm.id != null}">
+									<input type="hidden" name="id" th:field="*{id}" />
+								</th:block>
+								<input type="hidden" name="studentsDate" th:field="*{studentsDate}"
+									th:errorclass="is-invalid" />
+								<div class="invalid-feedback" th:errors="*{studentsDate}"></div>
 
 								<!-- dailyReports -->
-								<div class="mb-2　form-group">
-									<label for="dailyReports" class="form-label"
-										th:text="#{dailyReports}"></label>
+								<div class="form-group mb-3">
+									<label for="dailyReports" class="form-label" th:text="#{dailyReports}"></label>
 									<textarea th:field="*{dailyReports}" rows="5" cols="137" class="form-textarea"
 										th:errorclass="is-invalid"></textarea>
 									<div class="invalid-feedback" th:errors="*{dailyReports}">
 									</div>
 								</div>
 
-								<button class="btn btn-navy form-btn my-3" type="submit" th:text="#{insert}"></button>
+								<th:block th:if="${teacherDailyReportForm.id == null}">
+									<button class="btn btn-navy form-btn mb-3" type="submit"
+										th:text="#{insert}"></button>
+								</th:block>
+								<th:block th:if="${teacherDailyReportForm.id != null}">
+									<button class="btn btn-navy form-btn mb-3" type="submit"
+										th:text="#{update}"></button>
+								</th:block>
+
 							</form>
 
 						</div>

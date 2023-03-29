@@ -40,7 +40,7 @@
 			<small th:text="#{client.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- アカウント登録・更新 -->
 	<div th:fragment="account">
 		<div class="alert alert-success ms" th:if="${param.save}">
@@ -52,7 +52,7 @@
 			<small th:text="#{account.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 単元テスト名登録・更新 -->
 	<div th:fragment="miniexam">
 		<div class="alert alert-success ms" th:if="${param.save}">
@@ -64,70 +64,57 @@
 			<small th:text="#{miniexam.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 講師日報登録・更新 -->
 	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.save}">
 			<small th:text="#{teacher.report.daily.save.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
+		<div class="alert alert-danger ms" th:if="${param.searcherror}">
+			<small th:text="#{teacher.report.searcherror.ms}"></small><br>
+		</div>
 		<div class="alert alert-danger ms" th:if="${param.saveerror}">
 			<small th:text="#{teacher.report.daily.saveerror.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-danger ms" th:if="${param.editerror}">
 			<small th:text="#{teacher.report.daily.editerror1.ms}"></small><br>
 			<small th:text="#{teacher.report.daily.editerror2.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.update}">
 			<small th:text="#{teacher.report.daily.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 講師週報登録・更新 -->
 	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.saveweekly}">
 			<small th:text="#{teacher.report.weekly.save.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-danger ms" th:if="${param.saveweeklyerror}">
 			<small th:text="#{teacher.report.weekly.saveerror.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-danger ms" th:if="${param.editweeklyerror}">
 			<small th:text="#{teacher.report.weekly.editerror1.ms}"></small><br>
 			<small th:text="#{teacher.report.weekly.editerror2.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.updateweekly}">
 			<small th:text="#{teacher.report.weekly.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 講師受講生単元テスト点数登録・更新 -->
 	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.saveminiexam}">
 			<small th:text="#{teacher.miniexam.save.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-danger ms" th:if="${param.saveminiexamerror}">
 			<small th:text="#{teacher.miniexam.saveerror.ms}"></small>
 		</div>
-	</div>
-	<div th:fragment="teacher">
 		<div class="alert alert-success ms" th:if="${param.updateminiexam}">
 			<small th:text="#{teacher.miniexam.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 受講生日報登録・更新 -->
 	<div th:fragment="student">
 		<div class="alert alert-success ms" th:if="${param.save}">
@@ -140,14 +127,14 @@
 			<small th:text="#{student.report.update.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- 共通機能 -->
 	<div th:fragment="common">
 		<div class="alert alert-danger ms" th:if="${param.errordate}">
 			<small th:text="#{student.report.search.date.error.ms}"></small>
 		</div>
 	</div>
-	
+
 	<!-- エラーメッセージ(404 Not Foundなど) -->
 	<div th:fragment="error">
 		<div class="text-center">

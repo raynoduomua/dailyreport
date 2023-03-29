@@ -19,7 +19,7 @@ public class StudentReportService {
 	private final StudentReportRepository studentReportRepository;
 
 	/**
-	 * 当日受講生日報取得し、Formにセット
+	 * 該当日受講生日報取得し、Formにセット
 	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm Formクラス
 	 * @return                        studentCreateReportForm
@@ -43,7 +43,7 @@ public class StudentReportService {
 	}
 
 	/**
-	 * 受講生日報取得
+	 * 該当日受講生日報取得
 	 * @param loginUser               ログイン中のユーザ情報
 	 * @param studentCreateReportForm formクラス
 	 * @return                        StudentReport
@@ -56,9 +56,12 @@ public class StudentReportService {
 	}
 
 	/**
+	 */
+	/**
 	 * 該当日の受講生日報が存在するか
-	 * @param loginUser ログイン中のユーザ情報
-	 * @return          true or false
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @return                        true or false
 	 */
 	public boolean existsByStudentsDate(LoginUser loginUser, StudentCreateReportForm studentCreateReportForm) {
 
@@ -80,7 +83,7 @@ public class StudentReportService {
 		report.setUnderstandingDetail(studentCreateReportForm.getUnderstandingDetail());
 		report.setTeacherSupport(studentCreateReportForm.getTeacherSupport());
 		report.setQuestion(studentCreateReportForm.getQuestion());
-		report.setStudentsDate(LocalDateNow.getLocalDateNow());
+		report.setStudentsDate(studentCreateReportForm.getStudentsDate());
 		report.setCreatedAt(LocalDateNow.getLocalDateNow());
 		report.setUpdatedAt(null);
 

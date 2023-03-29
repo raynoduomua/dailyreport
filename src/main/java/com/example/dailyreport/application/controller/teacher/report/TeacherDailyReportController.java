@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.dailyreport.application.common.security.LoginUser;
 import com.example.dailyreport.application.common.utils.LocalDateNow;
 import com.example.dailyreport.application.form_validation.GroupOrder;
+import com.example.dailyreport.application.form_validation.SearchDateForm;
 import com.example.dailyreport.application.form_validation.TeacherDailyReportForm;
 import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.teacher.report.TeacherDailyReportService;
@@ -32,11 +33,13 @@ public class TeacherDailyReportController {
 	 * @param model                  Modelクラス
 	 * @param loginUser              ログイン中のユーザ情報
 	 * @param teacherDailyReportForm Formクラス
+	 * @param searchDateForm         Formクラス
 	 * @return                       講師日報作成画面
 	 */
 	@GetMapping("/create-daily-report")
 	public String viewCreateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm) {
+			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm,
+			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm) {
 
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", this.commonService.viewAccountOneList(loginUser));
@@ -47,53 +50,28 @@ public class TeacherDailyReportController {
 	}
 
 	/**
-	 * 講師日報登録処理
+	 * 講師日報検索後画面表示
 	 * @param model                  Modelクラス
 	 * @param loginUser              ログイン中のユーザ情報
 	 * @param teacherDailyReportForm Formクラス
+	 * @param searchDateForm         Formクラス
 	 * @param bindingResult          バリデーションチェック
-	 * @return                       存在しない：講師日報登録作成画面
-	 *                               存在する　：講師日報登録作成画面
+	 * @return                       講師日報検索後画面
 	 */
-	@PostMapping("/save-daily-report")
-	public String saveTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@Validated(GroupOrder.class) @ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm,
+	@PostMapping("/search-report")
+	public String searchTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm,
+			@Validated(GroupOrder.class) @ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
-			return this.viewCreateTeacherDailyReport(model, loginUser, teacherDailyReportForm);
+			return this.viewCreateTeacherDailyReport(model, loginUser, teacherDailyReportForm, searchDateForm);
 		}
 
-		// 本日の講師日報存在check
-		if (this.teacherDailyReportService.existsByCourseIdAndClassDate(loginUser) == false) {
+		if (searchDateForm.getStudentsDate().isAfter(LocalDateNow.getLocalDateNow())) {
 
-			this.teacherDailyReportService.saveTeacherDailyReport(loginUser, teacherDailyReportForm);
-
-			return "redirect:/teacher/create-daily-report?save";
-		} else {
-
-			return "redirect:/teacher/create-daily-report?saveerror";
-		}
-
-	}
-
-	/**
-	 * 講師日報編集画面
-	 * @param model                  Modelクラス
-	 * @param loginUser              ログイン中のユーザ情報
-	 * @param teacherDailyReportForm Formクラス
-	 * @return                       存在しない：講師日報作成画面
-	 *                               存在する　：講師日報編集画面
-	 */
-	@GetMapping("/edit-daily-report")
-	public String viewUpdateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm) {
-
-		// 本日の講師日報存在check
-		if (this.teacherDailyReportService.existsByCourseIdAndClassDate(loginUser) == false) {
-
-			return "redirect:/teacher/create-daily-report?editerror";
+			return "redirect:/teacher/create-daily-report?searcherror";
 		}
 
 		// ログイン中のユーザ情報取得
@@ -101,33 +79,49 @@ public class TeacherDailyReportController {
 		// 本日日付
 		model.addAttribute("today", LocalDateNow.getLocalDateNow());
 
-		teacherDailyReportForm = this.teacherDailyReportService.viewUpdateTeacherDailyReport(loginUser,
+		teacherDailyReportForm = this.teacherDailyReportService.searchTeacherDailyReport(loginUser,
 				teacherDailyReportForm);
 
-		return "teacher/daily/updatedailyreport";
+		return "teacher/daily/createdailyreport";
 	}
 
 	/**
-	 * 講師日報更新処理
+	 */
+	/**
+	 * 講師日報登録処理
 	 * @param model                  Modelクラス
 	 * @param loginUser              ログイン中のユーザ情報
+	 * @param searchDateForm         Formクラス
 	 * @param teacherDailyReportForm Formクラス
 	 * @param bindingResult          バリデーションチェック
-	 * @return                       講師日報作成画面
+	 * @return                       false：登録
+	 *                               true ：更新
 	 */
-	@PostMapping("/update-daily-report")
-	public String updateTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+	@PostMapping("/save-daily-report")
+	public String saveTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
 			@Validated(GroupOrder.class) @ModelAttribute("teacherDailyReportForm") TeacherDailyReportForm teacherDailyReportForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
-			return this.viewUpdateTeacherDailyReport(model, loginUser, teacherDailyReportForm);
+			return this.searchTeacherDailyReport(model, loginUser, teacherDailyReportForm, searchDateForm,
+					bindingResult);
 		}
 
-		this.teacherDailyReportService.updateTeacherDailyReport(loginUser, teacherDailyReportForm);
+		// 該当日の講師日報存在check
+		if (this.teacherDailyReportService.existsByCourseIdAndClassDate(loginUser, teacherDailyReportForm) == false) {
 
-		return "redirect:/teacher/create-daily-report?update";
+			this.teacherDailyReportService.saveTeacherDailyReport(loginUser, teacherDailyReportForm);
+
+			return "redirect:/teacher/home?save";
+		} else {
+
+			this.teacherDailyReportService.updateTeacherDailyReport(loginUser, teacherDailyReportForm);
+
+			return "redirect:/teacher/home?update";
+		}
+
 	}
 
 }

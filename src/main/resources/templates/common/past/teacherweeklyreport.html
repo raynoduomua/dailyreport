@@ -25,7 +25,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{past.teacher.daily.report}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{past.teacher.weekly.report}"></h3>
 
 							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
 								<tr>
@@ -62,16 +62,18 @@
 						</div>
 
 						<div class="card-body">
-							<form th:action="@{/past/teacher-daily-report}" method="post"
-								th:object="${pastTeacherDailyReportForm}" autocomplete="off">
+							<form th:action="@{/past/teacher-weekly-report}" method="post"
+								th:object="${pastTeacherWeeklyReportForm}" autocomplete="off">
 								<table class="tbl-list">
 									<tr>
 										<th:block sec:authorize="hasAuthority('ADMIN')">
 											<th th:text="#{coursename}" class="admin-list-course"></th>
+											<th th:text="#{clientname}" class="admin-list-course"></th>
 										</th:block>
-										<th th:text="#{date.from}" class="admin-list-course"></th>
-										<th th:text="#{date.to}" class="admin-list-course"></th>
-										<th></th>
+										<th:block
+											sec:authorize="hasAuthority('ADMIN') or hasAuthority('TEACHER') or hasAuthority('CLIENT')">
+											<th th:text="#{student.name}" class="admin-list-course"></th>
+										</th:block>
 									</tr>
 									<tr>
 										<th:block sec:authorize="hasAuthority('ADMIN')">
@@ -92,7 +94,50 @@
 													</div>
 												</div>
 											</td>
+											<td>
+												<!-- client -->
+												<div class="form-group mt-2">
+													<select id="clientNameId" name="clientNameId" class="form-select">
+														<option></option>
+														<option th:each="client : ${clients}" th:value="${client.id}"
+															th:text="${client.clientName}"
+															th:selected="${client.id} == *{clientNameId}"
+															th:field="*{clientNameId}" th:errorclass="is-invalid">
+														</option>
+													</select>
+													<div class="text-danger"
+														th:if="${#fields.hasErrors('clientNameId')}"
+														th:errors="*{clientNameId}">
+													</div>
+												</div>
+											</td>
 										</th:block>
+										<th:block
+											sec:authorize="hasAuthority('ADMIN') or hasAuthority('TEACHER') or hasAuthority('CLIENT')">
+											<td>
+												<!-- students -->
+												<div class="form-group mt-2">
+													<select id="id" name="id" class="form-select">
+														<option></option>
+														<option th:each="student : ${students}" th:value="${student.id}"
+															th:text="${student.name}"
+															th:selected="${student.id} == *{id}" th:field="*{id}"
+															th:errorclass="is-invalid">
+														</option>
+													</select>
+													<div class="text-danger" th:if="${#fields.hasErrors('id')}"
+														th:errors="*{id}">
+													</div>
+												</div>
+											</td>
+										</th:block>
+									</tr>
+									<tr>
+										<th th:text="#{date.from}" class="admin-list-course"></th>
+										<th th:text="#{date.to}" class="admin-list-course"></th>
+										<th></th>
+									</tr>
+									<tr>
 										<td>
 											<!-- FromDate -->
 											<div class="form-group mt-2">
@@ -125,20 +170,40 @@
 								<thead>
 									<tr>
 										<th class="list-date" th:text="#{student.date}"></th>
-										<th class="admin-list-course" th:text="#{coursename}"></th>
-										<th th:text="#{teacher.daily.report}"></th>
+										<th class="list-date" th:text="#{student.name}"></th>
+										<th class="list-textarea" th:text="#{learningContents}"></th>
+										<th class="list-und" th:text="#{understanding}"></th>
+										<th class="list-textarea" th:text="#{understandingDetail}"></th>
+										<th class="list-teach" th:text="#{teacherSupport}"></th>
+										<th class="list-textarea" th:text="#{question}"></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="report : ${teacherreports}">
-										<td th:text="${report.classDate}"></td>
-										<td th:text="${report.courseName}"></td>
-										<td th:text="${report.dailyReports}"></td>
+									<tr th:each="report : ${studentreports}">
+										<td th:text="${report.studentsDate}"></td>
+										<td th:text="${report.name}"></td>
+										<td th:text="${report.learningContents}"></td>
+										<th:block th:switch="${report.understanding}">
+											<td th:case=5 th:text="#{und5}"></td>
+											<td th:case=4 th:text="#{und4}"></td>
+											<td th:case=3 th:text="#{und3}"></td>
+											<td th:case=2 th:text="#{und2}"></td>
+											<td th:case=1 th:text="#{und1}"></td>
+										</th:block>
+										<td th:text="${report.understandingDetail}"></td>
+										<th:block th:switch="${report.teacherSupport}">
+											<td th:case=5 th:text="#{teach5}"></td>
+											<td th:case=4 th:text="#{teach4}"></td>
+											<td th:case=3 th:text="#{teach3}"></td>
+											<td th:case=2 th:text="#{teach2}"></td>
+											<td th:case=1 th:text="#{teach1}"></td>
+										</th:block>
+										<td th:text="${report.question}"></td>
 									</tr>
 								</tbody>
 							</table>
+
 						</div>
-						
 					</div>
 				</div>
 			</div>

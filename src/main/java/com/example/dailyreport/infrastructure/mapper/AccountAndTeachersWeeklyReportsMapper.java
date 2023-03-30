@@ -17,4 +17,6 @@ public interface AccountAndTeachersWeeklyReportsMapper {
 	List<AccountAndTeachersWeeklyReports> findbyUserIdAndCourseIdAndClassWeekBetween(
 			AccountAndTeachersWeeklyReports reports);
 
+	List<AccountAndTeachersWeeklyReports> searchTeachersWeeklyReports(AccountAndTeachersWeeklyReports reports);
+
 }

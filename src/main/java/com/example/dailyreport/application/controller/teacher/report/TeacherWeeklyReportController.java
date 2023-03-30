@@ -95,7 +95,8 @@ public class TeacherWeeklyReportController {
 	@GetMapping("/edit-weekly-report")
 	public String viewEditTeacherWeeklyReport(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 
-		model.addAttribute("reports", this.teacherWeeklyReportService.findbyUserIdAndCourseIdAndClassWeekBetween());
+		model.addAttribute("reports",
+				this.teacherWeeklyReportService.findbyUserIdAndCourseIdAndClassWeekBetween(loginUser));
 		// ログイン中のユーザ情報取得
 		model.addAttribute("loginAccount", this.commonService.viewAccountOneList(loginUser));
 		// 今週月曜日

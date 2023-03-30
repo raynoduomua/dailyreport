@@ -44,15 +44,61 @@
 		and
 			a.COURSE_NAME_ID = twr.COURSE_ID
 		<where>
+			<if test="userId != null">
+				twr.USER_ID = #{userId}
+			</if>
+			<if test="courseId != null">
+				and twr.COURSE_ID = #{courseId}
+			</if>
 			<if test="Monday != null">
-				twr.CLASS_WEEK
+				and twr.CLASS_WEEK
 				between
 				#{Monday} and #{Friday}
 			</if>
-			<if test="userId != null">
-				and twr.USER_ID = #{userId}
-			</if>
+			
 		</where>
 		;
 	</select>
+	
+	<select id="searchTeachersWeeklyReports" resultMap="report">
+		SELECT
+			twr.ID,
+			a.NAME,
+			twr.WEEKLY_REPORTS,
+			cn.COURSE_NAME,
+			twr.CLASS_WEEK,
+			cln.CLIENT_NAME
+		FROM
+			teachersweeklyreports twr
+		inner join
+			accounts a
+		on
+			twr.USER_ID = a.ID
+		inner join
+			coursesname cn
+		on
+			twr.COURSE_ID = cn.ID
+		inner join
+			clientsname cln
+		on
+			a.CLIENT_NAME_ID = cln.ID
+		<where>
+			<if test="courseId != null">
+				twr.COURSE_ID = #{courseId}
+			</if>
+			<if test="clientId != null">
+				AND cln.ID = #{clientId}
+			</if>
+			<if test="userId != null">
+				AND twr.USER_ID = #{userId}
+			</if>
+			<if test="fromDate != null">
+				AND twr.CLASS_WEEK >= #{fromDate}
+			</if>
+			<if test="toDate != null">
+				AND twr.CLASS_WEEK <![CDATA[ <= ]]> #{toDate}
+			</if>
+		</where>
+		;
+</select>
 </mapper>

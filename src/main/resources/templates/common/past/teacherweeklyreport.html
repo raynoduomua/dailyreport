@@ -169,40 +169,20 @@
 							<table id="table-csv" class="table table-bordered tbl-list">
 								<thead>
 									<tr>
-										<th class="list-date" th:text="#{student.date}"></th>
-										<th class="list-date" th:text="#{student.name}"></th>
-										<th class="list-textarea" th:text="#{learningContents}"></th>
-										<th class="list-und" th:text="#{understanding}"></th>
-										<th class="list-textarea" th:text="#{understandingDetail}"></th>
-										<th class="list-teach" th:text="#{teacherSupport}"></th>
-										<th class="list-textarea" th:text="#{question}"></th>
+										<th th:text="#{date.week}" colspan="2"></th>
+										<th th:text="#{student.name}"></th>
+										<th th:text="#{teachersweeklyreports}"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="report : ${studentreports}">
-										<td th:text="${report.studentsDate}"></td>
-										<td th:text="${report.name}"></td>
-										<td th:text="${report.learningContents}"></td>
-										<th:block th:switch="${report.understanding}">
-											<td th:case=5 th:text="#{und5}"></td>
-											<td th:case=4 th:text="#{und4}"></td>
-											<td th:case=3 th:text="#{und3}"></td>
-											<td th:case=2 th:text="#{und2}"></td>
-											<td th:case=1 th:text="#{und1}"></td>
-										</th:block>
-										<td th:text="${report.understandingDetail}"></td>
-										<th:block th:switch="${report.teacherSupport}">
-											<td th:case=5 th:text="#{teach5}"></td>
-											<td th:case=4 th:text="#{teach4}"></td>
-											<td th:case=3 th:text="#{teach3}"></td>
-											<td th:case=2 th:text="#{teach2}"></td>
-											<td th:case=1 th:text="#{teach1}"></td>
-										</th:block>
-										<td th:text="${report.question}"></td>
+										<td class="list-date" th:text="${report.Monday}"></td>
+										<td class="list-date" th:text="${report.Friday}"></td>
+										<td class="list-date" th:text="${report.name}"></td>
+										<td th:text="${report.weeklyReports}"></td>
 									</tr>
 								</tbody>
 							</table>
-
 						</div>
 					</div>
 				</div>

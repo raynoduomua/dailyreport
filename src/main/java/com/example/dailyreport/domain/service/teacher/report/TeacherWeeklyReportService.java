@@ -59,9 +59,10 @@ public class TeacherWeeklyReportService {
 	 * 講師と同じ講座の講師週報取得（対象：今週入力分）
 	 * @return 講師週報
 	 */
-	public List<AccountAndTeachersWeeklyReports> findbyUserIdAndCourseIdAndClassWeekBetween() {
+	public List<AccountAndTeachersWeeklyReports> findbyUserIdAndCourseIdAndClassWeekBetween(LoginUser loginUser) {
 
 		AccountAndTeachersWeeklyReports report = new AccountAndTeachersWeeklyReports();
+		report.setCourseId(loginUser.getUser().getCourseNameId());
 		report.setMonday(LocalDateNow.getLocalDateMonday());
 		report.setFriday(LocalDateNow.getLocalDateFriday());
 

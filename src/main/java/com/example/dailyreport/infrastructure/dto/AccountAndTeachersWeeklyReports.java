@@ -23,8 +23,14 @@ public class AccountAndTeachersWeeklyReports {
 
 	private Integer courseId;
 
+	private Integer clientId;
+
 	private LocalDate Monday;
 
 	private LocalDate Friday;
+
+	private LocalDate fromDate;
+
+	private LocalDate toDate;
 
 }

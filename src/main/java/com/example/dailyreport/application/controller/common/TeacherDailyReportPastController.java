@@ -52,7 +52,7 @@ public class TeacherDailyReportPastController {
 	 * @param model                      Modelクラス
 	 * @param loginUser                  ログイン中のユーザ情報
 	 * @param pastTeacherDailyReportForm Formクラス
-	 * @return                           講師日報過去検索画面
+	 * @return                           講師日報過去検索後画面
 	 */
 	@PostMapping("/teacher-daily-report")
 	public String pastTeacherDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,

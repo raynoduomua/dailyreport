@@ -25,7 +25,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{past.teacher.weekly.report}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{past.teacher.miniexam}"></h3>
 
 							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
 								<tr>
@@ -45,13 +45,20 @@
 											<td th:text="${account.courseName}"></td>
 										</tr>
 									</th:block>
+									<th:block th:case=5>
+										<tr>
+											<th th:text="#{student.clientname}"></th>
+											<td th:text="${account.clientName}"></td>
+										</tr>
+										<tr>
+											<th th:text="#{coursename}"></th>
+											<td th:text="${account.courseName}"></td>
+										</tr>
+									</th:block>
 								</th:block>
 								<tr>
-									<th th:text="#{student.date.week}" rowspan="2"></th>
-									<td th:text="${monday}"></td>
-								</tr>
-								<tr>
-									<td th:text="${friday}"></td>
+									<th th:text="#{student.date.today}"></th>
+									<td th:text="${today}"></td>
 								</tr>
 							</table>
 
@@ -62,8 +69,8 @@
 						</div>
 
 						<div class="card-body">
-							<form th:action="@{/past/teacher-weekly-report}" method="post"
-								th:object="${pastTeacherWeeklyReportForm}" autocomplete="off">
+							<form th:action="@{/past/student-mini-exam-report}" method="post"
+								th:object="${pastStudentMiniExamReportForm}" autocomplete="off">
 								<table class="tbl-list">
 									<tr>
 										<th:block sec:authorize="hasAuthority('ADMIN')">
@@ -130,36 +137,11 @@
 													</div>
 												</div>
 											</td>
+											<td>
+												<button class="btn btn-navy form-btn" type="submit"
+													th:text="#{search}"></button>
+											</td>
 										</th:block>
-									</tr>
-									<tr>
-										<th th:text="#{date.from}" class="admin-list-course"></th>
-										<th th:text="#{date.to}" class="admin-list-course"></th>
-										<th></th>
-									</tr>
-									<tr>
-										<td>
-											<!-- FromDate -->
-											<div class="form-group mt-2">
-												<input type="date" class="form-control" th:errorclass="is-invalid"
-													th:field="*{fromDate}">
-												<div class="invalid-feedback" th:errors="*{fromDate}">
-												</div>
-											</div>
-										</td>
-										<td>
-											<!-- ToDate -->
-											<div class="form-group mt-2">
-												<input type="date" class="form-control" th:errorclass="is-invalid"
-													th:field="*{toDate}">
-												<div class="invalid-feedback" th:errors="*{toDate}">
-												</div>
-											</div>
-										</td>
-										<td>
-											<button class="btn btn-navy form-btn" type="submit"
-												th:text="#{search}"></button>
-										</td>
 									</tr>
 								</table>
 							</form>
@@ -169,20 +151,24 @@
 							<table id="table-csv" class="table table-bordered tbl-list">
 								<thead>
 									<tr>
-										<th th:text="#{date.week}" colspan="2"></th>
+										<th class="admin-list-course" th:text="#{coursename}"></th>
+										<th th:text="#{miniexamName}"></th>
 										<th class="list-date" th:text="#{student.name}"></th>
-										<th th:text="#{teachersweeklyreports}"></th>
+										<th class="list-date" th:text="#{student.score}"></th>
+										<th class="list-date" th:text="#{class.score}"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="report : ${studentreports}">
-										<td class="list-date" th:text="${report.Monday}"></td>
-										<td class="list-date" th:text="${report.Friday}"></td>
+										<td th:text="${report.studentsDate}"></td>
 										<td th:text="${report.name}"></td>
-										<td th:text="${report.weeklyReports}"></td>
+										<td th:text="${report.learningContents}"></td>
+										<td th:text="${report.understandingDetail}"></td>
+										<td th:text="${report.question}"></td>
 									</tr>
 								</tbody>
 							</table>
+
 						</div>
 					</div>
 				</div>

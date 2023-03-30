@@ -18,6 +18,12 @@ public class TeacherWeeklyReportPastService {
 
 	private final AccountAndTeachersWeeklyReportsMapper accountAndTeachersWeeklyReportsMapper;
 
+	/**
+	 * 講師週報一覧
+	 * @param loginUser                   ログイン中のユーザ情報
+	 * @param pastTeacherWeeklyReportForm Formクラス
+	 * @return                            講師週報一覧
+	 */
 	public List<AccountAndTeachersWeeklyReports> pastTeacherWeeklyReport(LoginUser loginUser,
 			PastTeacherWeeklyReportForm pastTeacherWeeklyReportForm) {
 

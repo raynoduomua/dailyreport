@@ -30,6 +30,13 @@ public class TeacherWeeklyReportPastController {
 	private final StudentReportPastService studentReportPastService;
 	private final TeacherWeeklyReportPastService teacherWeeklyReportPastService;
 
+	/**
+	 * 講師週報過去検索画面
+	 * @param model                       Modelクラス
+	 * @param loginUser                   ログイン中のユーザ情報
+	 * @param pastTeacherWeeklyReportForm Formクラス
+	 * @return                            講師週報過去検索画面
+	 */
 	@GetMapping("/teacher-weekly-report")
 	public String viewPastTeacherWeeklyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("pastTeacherWeeklyReportForm") PastTeacherWeeklyReportForm pastTeacherWeeklyReportForm) {
@@ -48,6 +55,13 @@ public class TeacherWeeklyReportPastController {
 		return "common/past/teacherweeklyreport";
 	}
 
+	/**
+	 * 講師週報過去検索後画面表示
+	 * @param model                       Modelクラス
+	 * @param loginUser                   ログイン中のユーザ情報
+	 * @param pastTeacherWeeklyReportForm Formクラス
+	 * @return                            講師週報過去検索後画面
+	 */
 	@PostMapping("/teacher-weekly-report")
 	public String pastTeacherWeeklyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("pastTeacherWeeklyReportForm") PastTeacherWeeklyReportForm pastTeacherWeeklyReportForm) {

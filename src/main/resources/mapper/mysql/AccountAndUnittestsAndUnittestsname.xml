@@ -22,6 +22,7 @@
 		<result column="TEST_DATE" property="testDate" />
 		<result column="CREATED_AT" property="createdAt" />
 		<result column="UPDATED_AT" property="updatedAt" />
+		<result column="COURSE_NAME" property="courseName" />
 	</resultMap>
 
 	<!-- データを取得する時はselectタグを使用する -->
@@ -49,6 +50,43 @@
 			unittestsname utn
 		on
 			ut.TEST_ID = utn.ID
+		;
+	</select>
+	
+	<select id="searchStudentUnitTests" resultMap="miniexams">
+	<!-- 実行するSQLを定義する -->
+		SELECT
+			ut.ID,
+			cn.COURSE_NAME,
+			utn.TEST_NAME,
+			a.NAME,
+			ut.SCORE,
+			ut.SCORE_AVERAGE
+		FROM
+			unittests ut
+		inner join
+			accounts a
+		on
+			ut.USER_ID = a.ID
+		inner join
+			unittestsname utn
+		on
+			ut.TEST_ID = utn.ID
+		inner join
+			coursesname cn
+		on
+			a.COURSE_NAME_ID = cn.ID
+		<where>
+			<if test="courseNameId != null">
+				a.COURSE_NAME_ID = #{courseNameId}
+			</if>
+			<if test="clientNameId != null">
+				AND cn.ID = #{clientNameId}
+			</if>
+			<if test="userId != null">
+				AND ut.USER_ID = #{userId}
+			</if>
+		</where>
 		;
 	</select>
 </mapper>

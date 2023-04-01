@@ -114,12 +114,12 @@ public class TeacherDailyReportController {
 
 			this.teacherDailyReportService.saveTeacherDailyReport(loginUser, teacherDailyReportForm);
 
-			return "redirect:/teacher/home?save";
+			return "redirect:/teacher/create-daily-report?save";
 		} else {
 
 			this.teacherDailyReportService.updateTeacherDailyReport(loginUser, teacherDailyReportForm);
 
-			return "redirect:/teacher/home?update";
+			return "redirect:/teacher/create-daily-report?update";
 		}
 
 	}

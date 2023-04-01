@@ -160,11 +160,11 @@
 								</thead>
 								<tbody>
 									<tr th:each="report : ${studentreports}">
-										<td th:text="${report.studentsDate}"></td>
+										<td th:text="${report.courseName}"></td>
+										<td th:text="${report.testName}"></td>
 										<td th:text="${report.name}"></td>
-										<td th:text="${report.learningContents}"></td>
-										<td th:text="${report.understandingDetail}"></td>
-										<td th:text="${report.question}"></td>
+										<td th:text="${report.score}"></td>
+										<td th:text="${report.scoreAverage}"></td>
 									</tr>
 								</tbody>
 							</table>

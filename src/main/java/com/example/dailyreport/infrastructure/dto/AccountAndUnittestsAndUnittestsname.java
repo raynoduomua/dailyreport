@@ -25,4 +25,10 @@ public class AccountAndUnittestsAndUnittestsname {
 
 	private LocalDate updatedAt;
 
+	private String courseName;
+
+	private Integer courseNameId;
+
+	private Integer clientNameId;
+
 }

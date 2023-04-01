@@ -11,4 +11,7 @@ public interface AccountAndUnittestsAndUnittestsnameMapper {
 
 	List<AccountAndUnittestsAndUnittestsname> findStudentUnitTests();
 
+	List<AccountAndUnittestsAndUnittestsname> searchStudentUnitTests(
+			AccountAndUnittestsAndUnittestsname accountAndUnittestsAndUnittestsname);
+
 }

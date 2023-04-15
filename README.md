@@ -1,60 +1,39 @@
 # 日報システム
-（リポジトリ/プロジェクト/OSSなどの名前）
+（https://github.com/raynoduomua/dailyreport）
 
-分かりやすくてカッコイイ名前をつける（今回は"hoge"という名前をつける）
+自社で使用している日報システムを私なりに作成したものです。
 
-"hoge"が何かを簡潔に紹介する
+1.受講生が日々の学習内容を報告する
 
-# DEMO
+2.講師が日々の講義内容を報告、受講生の評価、テスト結果を入力する。
 
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
+3.クライアント（企業様）は受講生の学習内容、講師の評価を確認できる。
 
-# Features
-
-"hoge"のセールスポイントや差別化などを説明する
+4.管理者は、受講生、クライアント等のアカウント作成や、講座名の作成ができる
 
 # Requirement
-
-"hoge"を動かすのに必要なライブラリなどを列挙する
-
-* huga 3.5.2
-* hogehuga 1.0.2
-
-# Installation
-
-Requirementで列挙したライブラリなどのインストール方法を説明する
-
-```bash
-pip install huga_package
-```
-
-# Usage
-
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
-
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
-
-# Note
-
-注意点などがあれば書く
+* Spring Boot
+* java.version：17
+* jpa
+* thymeleaf
+* validation
+* spring-web
+* spring-boot-devtools
+* mysql
+* lombok
+* spring-test
+* bootstrap：5.1.3
+* bootstrap-icons：1.8.3
+* webjars-locator-core
+* thymeleaf-layout-dialect
+* mybatis：2.1.4
+* spring-security
+* thymeleaf-extras-springsecurity5
+* spring-security-test
+* datatables：1.11.4
+* datatables-plugins：1.11.4
+* datatables-buttons：2.2.2
+* jszip：3.7.1
 
 # Author
-
-作成情報を列挙する
-
-* 作成者
-* 所属
-* E-mail
-
-# License
-ライセンスを明示する
-
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
-
-社内向けなら社外秘であることを明示してる
-
-"hoge" is Confidential.
+* 作成者：raynoduomua

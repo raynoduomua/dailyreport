@@ -26,7 +26,7 @@
 					<div class="card shadow mt-3">
 
 						<div class="card-header">
-							<h3 class="text-center text-navy my-3" th:text="#{create.student.title}"></h3>
+							<h3 class="text-center text-navy my-3" th:text="#{check.student.title}"></h3>
 
 							<table th:each="account : ${loginAccount}" class="tbl-header my-1">
 								<tr>
@@ -59,18 +59,13 @@
 								autocomplete="off">
 								<table>
 									<tr>
+										<td>対象日付</td>
 										<td class="admin-list-course">
 											<!-- studentsDate -->
 											<div class="form-group">
-												<input type="date" class="form-control" th:errorclass="is-invalid"
-													th:field="*{studentsDate}">
-												<div class="invalid-feedback" th:errors="*{studentsDate}">
+												<input type="date" class="form-control"th:field="*{studentsDate}" disabled>
 												</div>
 											</div>
-										</td>
-										<td>
-											<button class="btn btn-navy form-btn" type="submit"
-												th:text="#{search}"></button>
 										</td>
 									</tr>
 								</table>
@@ -79,24 +74,17 @@
 
 						<div class="card-body form-card-body-report">
 
-							<form th:action="@{/student/check-report}" method="post"
+							<form th:action="@{/student/save-report}" method="post"
 								th:object="${studentCreateReportForm}" autocomplete="off">
-								<th:block th:if="${studentCreateReportForm.id != null}">
-									<input type="hidden" name="id" th:field="*{id}" />
-									<input type="hidden" name="userId" th:field="*{userId}" />
-								</th:block>
-								<input type="hidden" name="studentsDate" th:field="*{studentsDate}"
-									th:errorclass="is-invalid" />
-								<div class="invalid-feedback" th:errors="*{studentsDate}"></div>
+								<input type="hidden" name="studentsDate" th:field="*{studentsDate}" />
 
 								<!-- learningContents -->
 								<div class="form-group mb-3">
 									<label for="learningContents" class="form-label"
 										th:text="#{learningContents}"></label>
 									<textarea th:field="*{learningContents}" rows="3" cols="137" class="form-textarea"
-										th:errorclass="is-invalid"></textarea>
-									<div class="invalid-feedback" th:errors="*{learningContents}">
-									</div>
+										disabled></textarea>
+									<input type="hidden" name="learningContents" th:field="*{learningContents}" />
 								</div>
 
 								<!-- understanding -->
@@ -104,13 +92,10 @@
 									<p class="form-label" th:text="#{understanding}"></p>
 									<div th:each="item : ${underMap}" class="form-check-inline">
 										<input type="radio" class="form-check-input radio-button"
-											th:value="${item.value}" th:field="*{understanding}"
-											th:errorclass="is-invalid" />
+											th:value="${item.value}" th:field="*{understanding}" disabled />
 										<label th:for="${#ids.prev('understanding')}"
 											class="form-check-label radio-button-label" th:text="${item.key}"></label>
-									</div>
-									<div class="text-danger" th:if="${#fields.hasErrors('understanding')}"
-										th:errors="*{understanding}">
+										<input type="hidden" name="understanding" th:field="*{understanding}" />
 									</div>
 								</div>
 
@@ -118,10 +103,8 @@
 								<div class="form-group mb-3">
 									<label for="understandingDetail" class="form-label"
 										th:text="#{understandingDetail}"></label>
-									<textarea th:field="*{understandingDetail}" rows="3" cols="137"
-										class="form-textarea" th:errorclass="is-invalid"></textarea>
-									<div class="invalid-feedback" th:errors="*{understandingDetail}">
-									</div>
+									<textarea th:field="*{understandingDetail}" rows="3" cols="137" disabled></textarea>
+									<input type="hidden" name="understandingDetail" th:field="*{understandingDetail}" />
 								</div>
 
 								<!-- teacherSupport -->
@@ -129,36 +112,40 @@
 									<p class="form-label" th:text="#{teacherSupport}"></p>
 									<div th:each="item : ${teacherMap}" class="form-check-inline">
 										<input type="radio" class="form-check-input radio-button"
-											th:value="${item.value}" th:field="*{teacherSupport}"
-											th:errorclass="is-invalid" />
+											th:value="${item.value}" th:field="*{teacherSupport}" disabled />
 										<label th:for="${#ids.prev('teacherSupport')}"
 											class="form-check-label radio-button-label" th:text="${item.key}"></label>
-									</div>
-									<div class="text-danger" th:if="${#fields.hasErrors('teacherSupport')}"
-										th:errors="*{teacherSupport}">
+										<input type="hidden" name="teacherSupport" th:field="*{teacherSupport}" />
 									</div>
 								</div>
 
 								<!-- question -->
 								<div class="form-group mb-3">
 									<label for="question" class="form-label" th:text="#{question}"></label>
-									<textarea th:field="*{question}" rows="3" cols="137"
-										class="form-textarea"></textarea>
+									<textarea th:field="*{question}" rows="3" cols="137" class="form-textarea"
+										disabled></textarea>
+									<input type="hidden" name="question" th:field="*{question}" />
 								</div>
+
+								<p class="form-label" th:text="#{attention}"></p>
+								<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{insert}"></button>
+							</form>
+							
+							<form th:action="@{/student/search-report}" method="post"
+								th:object="${studentCreateReportForm}" autocomplete="off">
+								<input type="hidden" name="studentsDate" th:field="*{studentsDate}" />
+								<input type="hidden" name="learningContents" th:field="*{learningContents}" />
+								<input type="hidden" name="understanding" th:field="*{understanding}" />
+								<input type="hidden" name="understandingDetail" th:field="*{understandingDetail}" />
+								<input type="hidden" name="teacherSupport" th:field="*{teacherSupport}" />
+								<input type="hidden" name="question" th:field="*{question}" />
+								<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{return}"></button>
+							</form>
 						</div>
-
-						<th:block th:if="${studentCreateReportForm.id == null}">
-							<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{check}"></button>
-						</th:block>
-						<th:block th:if="${studentCreateReportForm.id != null}">
-							<button class="btn btn-navy form-btn mb-3" type="submit" th:text="#{no_insert}" disabled></button>
-						</th:block>
-
-						</form>
+						
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 	</main>
 

@@ -21,10 +21,12 @@ import com.example.dailyreport.domain.service.common.CommonService;
 import com.example.dailyreport.domain.service.student.StudentReportService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/student")
+@Slf4j
 public class StudentReportController {
 
 	private final StudentReportService studentReportService;
@@ -95,17 +97,8 @@ public class StudentReportController {
 		return "student/report/createdailyreport";
 	}
 
-	/**
-	 * 受講生日報登録・更新処理
-	 * @param model                   Modelクラス
-	 * @param loginUser               ログイン中のユーザ情報
-	 * @param studentCreateReportForm Formクラス
-	 * @param bindingResult           バリデーションチェック
-	 * @return                        false：登録
-	 *                                true ：更新
-	 */
-	@PostMapping("/save-report")
-	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+	@PostMapping("/check-report")
+	public String checkStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
 			@Validated(GroupOrder.class) @ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm,
 			BindingResult bindingResult) {
@@ -116,18 +109,34 @@ public class StudentReportController {
 					bindingResult);
 		}
 
-		// 該当日の受講生日報存在check
-		if (this.studentReportService.existsByStudentsDate(loginUser, studentCreateReportForm) == false) {
+		// ログイン中のユーザ情報取得
+		model.addAttribute("loginAccount", commonService.viewAccountOneList(loginUser));
+		// 本日日付
+		model.addAttribute("today", LocalDateNow.getLocalDateNow());
+		// 理解度
+		model.addAttribute("underMap", UnderStand.selectUnderStandMap());
+		// 講師対応
+		model.addAttribute("teacherMap", TeacherSupport.selectTeacherSupportMap());
 
-			this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
+		return "student/report/checkdailyreport";
+	}
 
-			return "redirect:/student/home?save";
-		} else {
+	/**
+	 * 受講生日報登録
+	 * @param model                   Modelクラス
+	 * @param loginUser               ログイン中のユーザ情報
+	 * @param studentCreateReportForm Formクラス
+	 * @param bindingResult           バリデーションチェック
+	 * @return                        受講生Home画面
+	 */
+	@PostMapping("/save-report")
+	public String saveStudentDailyReport(Model model, @AuthenticationPrincipal LoginUser loginUser,
+			@ModelAttribute("searchDateForm") SearchDateForm searchDateForm,
+			@ModelAttribute("studentCreateReportForm") StudentCreateReportForm studentCreateReportForm) {
 
-			this.studentReportService.updateStudentDailyReport(loginUser, studentCreateReportForm);
+		this.studentReportService.saveStudentDailyReport(loginUser, studentCreateReportForm);
 
-			return "redirect:/student/home?update";
-		}
+		return "redirect:/student/home?save";
 	}
 
 }
